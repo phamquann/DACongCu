@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặt Trước Món Ăn - Food Delivery</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --orange: #f97316;
+        --orange-dark: #ea580c;
+        --pink-light: #fbcfe8;
+        --gray-light: #f3f4f6;
+        --gray-medium: #e5e7eb;
+        --gray-dark: #6b7280;
+        --blue: #60a5fa;
+        --yellow: #fbbf24;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+        background-color: var(--gray-light);
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 32px 16px;
+      }
+
+      /* ========== HEADER ========== */
+      .page-header {
+        margin-bottom: 32px;
+      }
+
+      .page-header h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 8px;
+      }
+
+      .page-header p {
+        font-size: 16px;
+        color: var(--gray-dark);
+      }
+
+      /* ========== DATE & TIME SECTION ========== */
+      .booking-section {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        margin-bottom: 32px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #374151;
+        margin-bottom: 16px;
+      }
+
+      /* Date Buttons */
+      .date-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+
+      .date-btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+        background-color: var(--pink-light);
+        color: #374151;
+      }
+
+      .date-btn:hover {
+        background-color: #f9a8d4;
+      }
+
+      .date-btn.active {
+        background-color: var(--orange);
+        color: white;
+        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+      }
+
+      /* Time Selectors */
+      .time-selectors {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .select-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .select-group label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        text-transform: capitalize;
+      }
+
+      .select-group select {
+        padding: 12px 16px;
+        border: 1px solid var(--gray-medium);
+        border-radius: 8px;
+        font-size: 14px;
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .select-group select:focus {
+        outline: none;
+        border-color: var(--orange);
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+      }
+
+      /* ========== MAIN CONTENT AREA ========== */
+      .main-area {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 32px;
+      }
+
+      /* Search & Menu */
+      .menu-section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .search-box {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+
+      .search-input-wrapper {
+        flex: 1;
+        position: relative;
+      }
+
+      .search-input-wrapper input {
+        width: 100%;
+        padding: 12px 16px 12px 44px;
+        border: 1px solid var(--gray-medium);
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .search-input-wrapper input:focus {
+        outline: none;
+        border-color: var(--orange);
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+      }
+
+      .search-input-wrapper::before {
+        content: "🔍";
+        position: absolute;
+        left: 14px;
+        top: 12px;
+        font-size: 18px;
+      }
+
+      .search-btn {
+        padding: 12px 32px;
+        background-color: var(--orange);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
+      }
+
+      .search-btn:hover {
+        background-color: var(--orange-dark);
+      }
+
+      .menu-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 24px;
+      }
+
+      /* Menu Grid */
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+      }
+
+      .menu-card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        transition: box-shadow 0.3s;
+        cursor: pointer;
+      }
+
+      .menu-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .menu-card-header {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .menu-image {
+        font-size: 56px;
+        display: flex;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+      }
+
+      .menu-info {
+        flex: 1;
+      }
+
+      .menu-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 8px;
+      }
+
+      .menu-rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .stars {
+        display: flex;
+        gap: 2px;
+      }
+
+      .star {
+        font-size: 14px;
+        color: var(--yellow);
+      }
+
+      .rating-text {
+        font-size: 13px;
+        font-weight: 700;
+        color: #374151;
+      }
+
+      .review-count {
+        font-size: 12px;
+        color: var(--gray-dark);
+      }
+
+      .add-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: var(--orange);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 12px;
+        transition: background-color 0.3s;
+      }
+
+      .add-btn:hover {
+        background-color: var(--orange-dark);
+      }
+
+      /* ========== SIDEBAR ========== */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .highlight-box {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+      }
+
+      .highlight-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 24px;
+      }
+
+      .menu-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .menu-item:hover {
+        background-color: var(--gray-light);
+      }
+
+      .menu-item-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #fed7aa, #fb923c);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu-item-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .menu-item-name {
+        font-weight: 700;
+        color: #111827;
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .menu-item-rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .menu-item-rating .star {
+        font-size: 12px;
+      }
+
+      .menu-item-rating-value {
+        font-weight: 700;
+        color: #374151;
+        font-size: 12px;
+      }
+
+      /* Reservation Status */
+      .reservation-box {
+        background: linear-gradient(135deg, #fb923c, #f97316);
+        color: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+      }
+
+      .reservation-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      .reservation-info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+        font-size: 14px;
+      }
+
+      .reservation-row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .reservation-confirm {
+        width: 100%;
+        padding: 12px;
+        background-color: white;
+        color: var(--orange);
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .reservation-confirm:hover {
+        background-color: #f3f4f6;
+      }
+
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 1024px) {
+        .main-area {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          flex-direction: row;
+          gap: 16px;
+        }
+
+        .highlight-box {
+          flex: 1;
+          padding: 16px;
+        }
+
+        .menu-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 16px;
+        }
+
+        .page-header h1 {
+          font-size: 24px;
+        }
+
+        .date-buttons {
+          gap: 8px;
+        }
+
+        .date-btn {
+          padding: 8px 16px;
+          font-size: 13px;
+        }
+
+        .time-selectors {
+          grid-template-columns: 1fr;
+        }
+
+        .menu-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .sidebar {
+          flex-direction: column;
+        }
+
+        .menu-card {
+          padding: 16px;
+        }
+      }
+
+      /* ========== SCROLL BAR ========== */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <h1>Đặt trước</h1>
+        <p>Đặt chỗ trong 15 phút</p>
+      </div>
+
+      <!-- BOOKING SECTION - Date & Time -->
+      <div class="booking-section">
+        <div class="section-title">Chọn ngày & giờ</div>
+
+        <!-- Date Buttons -->
+        <div class="date-buttons">
+          <button class="date-btn">Ngày</button>
+          <button class="date-btn active">1</button>
+          <button class="date-btn">2</button>
+          <button class="date-btn">3</button>
+          <button class="date-btn">4</button>
+          <button class="date-btn">5</button>
+        </div>
+
+        <!-- Time Selectors -->
+        <div class="time-selectors">
+          <div class="select-group">
+            <label>Giờ</label>
+            <select>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+            </select>
+          </div>
+          <div class="select-group">
+            <label>Phút</label>
+            <select>
+              <option>00</option>
+              <option>15</option>
+              <option>30</option>
+              <option>45</option>
+            </select>
+          </div>
+          <div class="select-group">
+            <label>Số người</label>
+            <select>
+              <option>1 người</option>
+              <option>2 người</option>
+              <option>3 người</option>
+              <option>4 người</option>
+              <option>5+ người</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT AREA -->
+      <div class="main-area">
+        <!-- LEFT: Menu -->
+        <div class="menu-section">
+          <!-- Search Box -->
+          <div class="search-box">
+            <div class="search-input-wrapper">
+              <input type="text" placeholder="Tìm kiếm món ăn" />
+            </div>
+            <button class="search-btn">Tìm kiếm</button>
+          </div>
+
+          <!-- Menu Title -->
+          <h2 class="menu-title">Menu nhà hàng</h2>
+
+          <!-- Menu Grid -->
+          <div class="menu-grid">
+            <!-- Phở -->
+            <div class="menu-card">
+              <div class="menu-card-header">
+                <div class="menu-image">🍜</div>
+                <div class="menu-info">
+                  <h3 class="menu-name">Phở</h3>
+                  <div class="menu-rating">
+                    <div class="stars">
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                    </div>
+                    <span class="rating-text">4.8</span>
+                  </div>
+                  <span class="review-count">(245 đánh giá)</span>
+                </div>
+              </div>
+              <button class="add-btn">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Cơm tấm -->
+            <div class="menu-card">
+              <div class="menu-card-header">
+                <div class="menu-image">🍚</div>
+                <div class="menu-info">
+                  <h3 class="menu-name">Cơm tấm</h3>
+                  <div class="menu-rating">
+                    <div class="stars">
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star" style="color: #d1d5db">⭐</span>
+                    </div>
+                    <span class="rating-text">4.6</span>
+                  </div>
+                  <span class="review-count">(189 đánh giá)</span>
+                </div>
+              </div>
+              <button class="add-btn">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Bún chả -->
+            <div class="menu-card">
+              <div class="menu-card-header">
+                <div class="menu-image">🍝</div>
+                <div class="menu-info">
+                  <h3 class="menu-name">Bún chả</h3>
+                  <div class="menu-rating">
+                    <div class="stars">
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                    </div>
+                    <span class="rating-text">4.9</span>
+                  </div>
+                  <span class="review-count">(312 đánh giá)</span>
+                </div>
+              </div>
+              <button class="add-btn">Thêm vào giỏ</button>
+            </div>
+
+            <!-- Gà rán -->
+            <div class="menu-card">
+              <div class="menu-card-header">
+                <div class="menu-image">🍗</div>
+                <div class="menu-info">
+                  <h3 class="menu-name">Gà rán</h3>
+                  <div class="menu-rating">
+                    <div class="stars">
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star">⭐</span>
+                      <span class="star" style="color: #d1d5db">⭐</span>
+                    </div>
+                    <span class="rating-text">4.7</span>
+                  </div>
+                  <span class="review-count">(156 đánh giá)</span>
+                </div>
+              </div>
+              <button class="add-btn">Thêm vào giỏ</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="sidebar">
+          <!-- Highlight Menu -->
+          <div class="highlight-box">
+            <h3 class="highlight-title">Điểm nổi bật</h3>
+            <div class="menu-list">
+              <div class="menu-item">
+                <div class="menu-item-avatar">🍜</div>
+                <div class="menu-item-info">
+                  <div class="menu-item-name">Phở</div>
+                  <div class="menu-item-rating">
+                    <span class="star">⭐</span>
+                    <span class="menu-item-rating-value">4.8</span>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-avatar">🍚</div>
+                <div class="menu-item-info">
+                  <div class="menu-item-name">Cơm tấm</div>
+                  <div class="menu-item-rating">
+                    <span class="star">⭐</span>
+                    <span class="menu-item-rating-value">4.6</span>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-avatar">🍝</div>
+                <div class="menu-item-info">
+                  <div class="menu-item-name">Bún chả</div>
+                  <div class="menu-item-rating">
+                    <span class="star">⭐</span>
+                    <span class="menu-item-rating-value">4.9</span>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item-avatar">🍗</div>
+                <div class="menu-item-info">
+                  <div class="menu-item-name">Gà rán</div>
+                  <div class="menu-item-rating">
+                    <span class="star">⭐</span>
+                    <span class="menu-item-rating-value">4.7</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reservation Status -->
+          <div class="reservation-box">
+            <h3 class="reservation-title">Lịch đặt trước</h3>
+            <div class="reservation-info">
+              <div class="reservation-row">
+                <span>Ngày:</span>
+                <strong>Hôm nay</strong>
+              </div>
+              <div class="reservation-row">
+                <span>Giờ:</span>
+                <strong>19:00</strong>
+              </div>
+              <div class="reservation-row">
+                <span>Số người:</span>
+                <strong>4 người</strong>
+              </div>
+            </div>
+            <button class="reservation-confirm">Xác nhận</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,8 @@
-package com.example.fooddelivery;
+package com.example.fooddelivery.repository;
 
 import java.util.List;
+
+import com.example.fooddelivery.entity.OrderEntity;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

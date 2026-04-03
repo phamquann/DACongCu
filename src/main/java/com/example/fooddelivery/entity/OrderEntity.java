@@ -1,12 +1,12 @@
-package com.example.fooddelivery;
+package com.example.fooddelivery.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.fooddelivery.FoodDeliveryService.OrderStatus;
-import com.example.fooddelivery.FoodDeliveryService.PaymentMethod;
+import com.example.fooddelivery.service.FoodDeliveryService.OrderStatus;
+import com.example.fooddelivery.service.FoodDeliveryService.PaymentMethod;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

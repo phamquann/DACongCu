@@ -1,4 +1,4 @@
-package com.example.fooddelivery;
+package com.example.fooddelivery.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.example.fooddelivery;
+package com.example.fooddelivery.entity;
 
 import java.time.LocalDate;
 

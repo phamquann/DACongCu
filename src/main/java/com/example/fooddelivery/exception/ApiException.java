@@ -1,4 +1,4 @@
-package com.example.fooddelivery;
+package com.example.fooddelivery.exception;
 
 import org.springframework.http.HttpStatus;
 

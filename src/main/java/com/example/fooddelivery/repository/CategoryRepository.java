@@ -1,6 +1,8 @@
-package com.example.fooddelivery;
+package com.example.fooddelivery.repository;
 
 import java.util.Optional;
+
+import com.example.fooddelivery.entity.CategoryEntity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

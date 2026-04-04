@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - FOODIUM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Side - Orange */
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #ff9800 0%, #ff7c00 100%);
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .logo-box {
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff9800;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 40px;
+        }
+
+        .benefits {
+            list-style: none;
+        }
+
+        .benefits li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .benefits li:before {
+            content: "✓";
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+            margin-top: -2px;
+        }
+
+        /* Right Side - Form */
+        .right-section {
+            flex: 1;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.5;
+        }
+
+        #registerForm {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-icon {
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"] {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff9800;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .error-text {
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        .confirm-password-group {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .btn-register {
+            padding: 14px;
+            background: linear-gradient(135deg, #ff9800 0%, #ff7c00 100%);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn-register:active {
+            transform: translateY(0);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #ff9800;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 13px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-section {
+                min-height: auto;
+                padding: 40px;
+            }
+
+            .right-section {
+                padding: 40px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .form-header h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-section {
+                padding: 30px;
+            }
+
+            .right-section {
+                padding: 30px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .form-header h2 {
+                font-size: 22px;
+            }
+
+            .benefits {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div>
+                <div class="logo">
+                    <div class="logo-box">F</div>
+                    <span>FOODIUM</span>
+                </div>
+
+                <div class="hero-content">
+                    <h1>Đặt Món Nước Giao Tận Nhà</h1>
+                    <p>Một lựa chọn hoàn hảo cho những người yêu thích thực phẩm</p>
+                </div>
+            </div>
+
+            <ul class="benefits">
+                <li>Giao hàng nhanh chóng và an toàn</li>
+                <li>Nhiều món ăn đa dạng từ các nhà hàng hàng đầu</li>
+                <li>Giá cả cạnh tranh và các chương trình khuyến mãi hấp dẫn</li>
+            </ul>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="form-header">
+                <h2>Đăng kỳ tài khoản</h2>
+                <p>Tạo tài khoản để bắt đầu đặt món yêu thích</p>
+            </div>
+
+            <div id="alert" class="alert"></div>
+
+            <form id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">
+                            <span class="input-icon">👤</span>
+                            Họ và tên
+                        </label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Nhập họ và tên" required>
+                        <div class="error-text" id="firstNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="input-icon">✉️</span>
+                            Email
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="Nhập email" required>
+                        <div class="error-text" id="emailError"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">
+                            <span class="input-icon">📱</span>
+                            Số điện thoại
+                        </label>
+                        <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+                        <div class="error-text" id="phoneError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">
+                            <span class="input-icon">📍</span>
+                            Địa chỉ
+                        </label>
+                        <input type="text" id="address" name="address" placeholder="Nhập địa chỉ" required>
+                        <div class="error-text" id="addressError"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="input-icon">🔒</span>
+                            Mật khẩu
+                        </label>
+                        <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                        <div class="error-text" id="passwordError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <span class="input-icon">🔒</span>
+                            Xác nhận mật khẩu
+                        </label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Xác nhận mật khẩu" required>
+                        <div class="error-text" id="confirmPasswordError"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register">Đăng kỳ</button>
+                <div class="loading" id="loading">Đang xử lý...</div>
+            </form>
+
+            <div class="login-link">
+                Bạn có tài khoản? <a onclick="goLogin()">Đăng nhập ngay</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const alertBox = document.getElementById('alert');
+        const loadingDiv = document.getElementById('loading');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!validateForm()) {
+                return;
+            }
+
+            const formData = {
+                name: document.getElementById('firstName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                password: document.getElementById('password').value
+            };
+
+            loadingDiv.style.display = 'block';
+
+            try {
+                const response = await fetch('/api/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                loadingDiv.style.display = 'none';
+
+                const result = await response.json();
+
+                if (response.ok || response.status === 201) {
+                    showAlert('Đăng ký thành công! Vui lòng đợi để được chuyển hướng...', 'success');
+                    form.reset();
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 2000);
+                } else {
+                    showAlert(result.message || 'Đăng ký thất bại. Vui lòng thử lại.', 'error');
+                }
+            } catch (error) {
+                loadingDiv.style.display = 'none';
+                console.error('Error:', error);
+                showAlert('Lỗi kết nối. Vui lòng thử lại.', 'error');
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            document.querySelectorAll('.error-text').forEach(el => {
+                el.classList.remove('show');
+                el.textContent = '';
+            });
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!firstName) {
+                showError('firstNameError', 'Vui lòng nhập họ và tên');
+                isValid = false;
+            }
+
+            if (!email) {
+                showError('emailError', 'Vui lòng nhập email');
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                showError('emailError', 'Email không hợp lệ');
+                isValid = false;
+            }
+
+            if (!phone) {
+                showError('phoneError', 'Vui lòng nhập số điện thoại');
+                isValid = false;
+            } else if (!isValidPhone(phone)) {
+                showError('phoneError', 'Số điện thoại không hợp lệ');
+                isValid = false;
+            }
+
+            if (!address) {
+                showError('addressError', 'Vui lòng nhập địa chỉ');
+                isValid = false;
+            }
+
+            if (!password) {
+                showError('passwordError', 'Vui lòng nhập mật khẩu');
+                isValid = false;
+            } else if (password.length < 6) {
+                showError('passwordError', 'Mật khẩu phải có ít nhất 6 ký tự');
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                showError('confirmPasswordError', 'Mật khẩu không khớp');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.classList.add('show');
+        }
+
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const re = /^[\d\s\-\+\(\)]{10,}$/;
+            return re.test(phone);
+        }
+
+        function showAlert(message, type) {
+            alertBox.textContent = message;
+            alertBox.className = `alert show alert-${type}`;
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function goLogin() {
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+</html>

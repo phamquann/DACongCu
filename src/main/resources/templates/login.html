@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - FastFood</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff9800;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .remember-forgot checkbox {
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #ff9800;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff9800 0%, #ff7c00 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #ff9800;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link a {
+            color: #ff9800;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .error-text {
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        .demo-login {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .demo-login strong {
+            color: #333;
+        }
+
+        .demo-login p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a onclick="goHome()">← Quay lại trang chủ</a>
+        </div>
+
+        <div class="header">
+            <div class="logo">🍔 FastFood</div>
+            <h1>Đăng Nhập</h1>
+            <p class="subtitle">Đăng nhập để quản lý tài khoản của bạn</p>
+        </div>
+
+        <div id="alert" class="alert"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-text" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mật Khẩu</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error-text" id="passwordError"></div>
+            </div>
+
+            <div class="remember-forgot">
+                <label style="margin-bottom: 0;">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <span style="margin-left: 5px;">Nhớ tài khoản</span>
+                </label>
+                <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="btn-login">Đăng Nhập</button>
+            <div class="loading" id="loading">Đang xử lý...</div>
+        </form>
+
+        <div class="signup-link">
+            Chưa có tài khoản? <a onclick="goRegister()">Đăng Ký Ngay</a>
+        </div>
+
+        <div class="demo-login">
+            <strong>🔐 Tài khoản demo:</strong>
+            <p>Email: user@example.com</p>
+            <p>Mật khẩu: password123</p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const alertBox = document.getElementById('alert');
+        const loadingDiv = document.getElementById('loading');
+
+        // Load saved email if "Remember Me" was checked before
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedEmail = localStorage.getItem('savedEmail');
+            if (savedEmail) {
+                document.getElementById('email').value = savedEmail;
+                document.getElementById('rememberMe').checked = true;
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            // Save email if remember me is checked
+            if (rememberMe) {
+                localStorage.setItem('savedEmail', email);
+            } else {
+                localStorage.removeItem('savedEmail');
+            }
+
+            loadingDiv.style.display = 'block';
+
+            try {
+                // For demo purposes, we'll use basic auth
+                // In production, implement proper JWT or session-based authentication
+                const response = await fetch('/api/users', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password),
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                loadingDiv.style.display = 'none';
+
+                if (response.ok) {
+                    showAlert('Đăng nhập thành công! Vui lòng đợi...', 'success');
+                    // Store auth info in localStorage
+                    localStorage.setItem('userEmail', email);
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1500);
+                } else if (response.status === 401) {
+                    showAlert('Email hoặc mật khẩu không đúng.', 'error');
+                } else {
+                    showAlert('Đăng nhập thất bại. Vui lòng thử lại.', 'error');
+                }
+            } catch (error) {
+                loadingDiv.style.display = 'none';
+                console.error('Error:', error);
+                showAlert('Lỗi kết nối. Vui lòng thử lại.', 'error');
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error-text').forEach(el => {
+                el.classList.remove('show');
+                el.textContent = '';
+            });
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Validate email
+            if (!email) {
+                showError('emailError', 'Vui lòng nhập email');
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                showError('emailError', 'Email không hợp lệ');
+                isValid = false;
+            }
+
+            // Validate password
+            if (!password) {
+                showError('passwordError', 'Vui lòng nhập mật khẩu');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.classList.add('show');
+        }
+
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showAlert(message, type) {
+            alertBox.textContent = message;
+            alertBox.className = `alert show alert-${type}`;
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        function goRegister() {
+            window.location.href = '/register';
+        }
+    </script>
+</body>
+</html>

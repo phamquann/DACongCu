@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh Quân - Quản lý đơn hàng & Cá nhân</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Tab Navigation -->
+    <nav class="navigation">
+        <button class="nav-btn active" onclick="switchPage('tracking', this)">Theo dõi đơn hàng</button>
+        <button class="nav-btn" onclick="switchPage('profile', this)">Trang cá nhân</button>
+    </nav>
+
+    <!-- Page: Order Tracking -->
+    <div id="tracking" class="page active tracking-layout">
+        <h1 style="grid-column: 1 / -1; font-size: 24px; font-weight: 400; color: #555; margin-bottom: -10px;">Giao hàng - Minh Quân</h1>
+        <div class="main-column">
+            <!-- Tracking Card -->
+            <div class="card">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Theo dõi đơn hàng</h2>
+                        <p class="section-subtitle">Mã đơn: PHAMQUAN-001</p>
+                    </div>
+                    <div class="delivery-time">
+                        <i data-lucide="timer" size="18"></i>
+                        <span>15 - 20 phút</span>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-steps">
+                        <div class="progress-bar-fill" style="width: 66%;"></div>
+                        
+                        <div class="step active">
+                            <div class="step-icon-box"><i data-lucide="check-circle" size="20"></i></div>
+                            <span class="step-name">Đã đặt hàng</span>
+                            <span class="step-time">14:20</span>
+                        </div>
+
+                        <div class="step active">
+                            <div class="step-icon-box"><i data-lucide="chef-hat" size="20"></i></div>
+                            <span class="step-name">Đang chuẩn bị</span>
+                            <span class="step-time">14:30</span>
+                        </div>
+
+                        <div class="step active">
+                            <div class="step-icon-box"><i data-lucide="bike" size="20"></i></div>
+                            <span class="step-name">Đang giao hàng</span>
+                            <span class="step-time">14:40</span>
+                        </div>
+
+                        <div class="step pending">
+                            <div class="step-icon-box"><i data-lucide="home" size="20"></i></div>
+                            <span class="step-name">Đã giao hàng</span>
+                            <span class="step-time">Dự kiến 14:50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- Driver Info -->
+                <div class="card">
+                    <h3 class="section-title" style="font-size: 16px; margin-bottom: 20px;">Thông tin tài xế</h3>
+                    <div class="info-row">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=driver" alt="Driver" class="avatar-img">
+                        <div class="user-text">
+                            <h4>Trần Đức Minh</h4>
+                            <div class="user-subtext">
+                                <i data-lucide="bike" size="14"></i>
+                                <span>HonDa Wave - 29X - 12345</span>
+                            </div>
+                        </div>
+                        <button class="action-btn">
+                            <i data-lucide="phone" size="16"></i>
+                            <span>Gọi</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Delivery Address -->
+                <div class="card">
+                    <h3 class="section-title" style="font-size: 16px; margin-bottom: 20px;">Địa chỉ giao hàng</h3>
+                    <div class="location-box">
+                        <div class="loc-icon"><i data-lucide="map-pin" size="20"></i></div>
+                        <div class="loc-info">
+                            <h4>Trần Thị Thanh Mai</h4>
+                            <p>0947689615<br>Đường 5, Lũ Lô, Man Thiện, Thủ Đức, Hồ Chí Minh</p>
+                            <p style="font-size: 12px; color: var(--primary); font-weight: 600; margin-top: 5px;">Ghi chú: Gọi điện trước khi giao 5 phút</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Details -->
+            <div class="card">
+                <h3 class="section-title" style="font-size: 16px; margin-bottom: 15px;">Chi tiết đơn hàng</h3>
+                <div class="order-items-list">
+                    <div class="order-item">
+                        <div class="order-item-left">
+                            <h5>Burger bò thanh mai</h5>
+                            <span>x2</span>
+                        </div>
+                        <div class="order-item-price">170.000đ</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-item-left">
+                            <h5>Gà rán cô ba Hằng (9 miếng)</h5>
+                            <span>x1</span>
+                        </div>
+                        <div class="order-item-price">159.000đ</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-item-left">
+                            <h5>Cái L Pesi</h5>
+                            <span>x2</span>
+                        </div>
+                        <div class="order-item-price">80.000đ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Summary -->
+        <div class="sidebar-column">
+            <div class="card summary-card">
+                <h3 class="summary-title">Tổng đơn hàng</h3>
+                
+                <div class="summary-row">
+                    <span>Tạm tính</span>
+                    <span style="font-weight: 700;">409.000đ</span>
+                </div>
+                <div class="summary-row">
+                    <span>Chi phí giao</span>
+                    <span style="font-weight: 700;">10.000đ</span>
+                </div>
+                
+                <div class="summary-row total">
+                    <span>Tổng cộng</span>
+                    <span>419.000đ</span>
+                </div>
+
+                <div class="payment-info" style="margin-top: 30px; background: transparent; padding: 0;">
+                    <i data-lucide="calendar-days" size="18" style="color: var(--primary);"></i>
+                    <div>
+                        <p style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Thời gian đặt hàng</p>
+                        <p>Hôm nay</p>
+                    </div>
+                </div>
+
+                <div class="payment-info">
+                   <i data-lucide="wallet" size="20" style="color: var(--primary);"></i>
+                   <div>
+                       <p style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Phương thức thanh toán</p>
+                       <p>Tiền mặt khi nhận hàng</p>
+                   </div>
+                </div>
+
+                <button class="cancel-order-btn">Hủy đơn hàng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page: Personal Profile -->
+    <div id="profile" class="page profile-layout">
+        <h1 style="grid-column: 1 / -1; font-size: 24px; font-weight: 400; color: #555; margin-bottom: -10px;">Trang cá nhân - Minh Quân</h1>
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+            <div class="profile-card">
+                <div class="profile-img-container">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=user" alt="Profile" class="profile-img">
+                    <div class="edit-badge"><i data-lucide="camera" size="14"></i></div>
+                </div>
+                <h3>Phạm Quân</h3>
+
+                <div class="profile-nav">
+                    <div class="profile-nav-item active">
+                        <i data-lucide="user" size="18"></i>
+                        <span>Hồ sơ</span>
+                    </div>
+                    <div class="profile-nav-item">
+                        <i data-lucide="clock" size="18"></i>
+                        <span>Đơn hàng</span>
+                    </div>
+                    <div class="profile-nav-item">
+                        <i data-lucide="heart" size="18"></i>
+                        <span>Yêu thích</span>
+                    </div>
+                    <div class="profile-nav-item">
+                        <i data-lucide="map-pin" size="18"></i>
+                        <span>Địa chỉ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="profile-main">
+            <div class="card info-form-card">
+                <div class="form-header">
+                    <h3>Thông tin cá nhân</h3>
+                    <a href="#" class="edit-action">
+                        <i data-lucide="edit-3" size="16"></i>
+                        <span>Chỉnh sửa</span>
+                    </a>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Họ và tên</label>
+                        <input type="text" value="Phạm Quân" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" value="quanpham@gmail.com" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Số điện thoại</label>
+                        <input type="text" value="0987654321" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Ngày sinh</label>
+                        <input type="text" value="12/04/1998" readonly>
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <h4>Thống kê</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item one">
+                            <span>24</span>
+                            <p>Đơn hàng</p>
+                        </div>
+                        <div class="stat-item two">
+                            <span>12</span>
+                            <p>Yêu thích</p>
+                        </div>
+                        <div class="stat-item three">
+                            <span>4.8k</span>
+                            <p>Điểm thưởng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+</script>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Voucher - Admin</title>
+    <link rel="stylesheet" href="voucher-admin.css">
+</head>
+<body>
+<div class="sidebar">
+    <div class="logo">VOUCHER <span>ADMIN</span></div>
+    <ul>
+        <li>🏠 Thống kê</li>
+        <li class="active">✉️ Quản lý Voucher</li>
+    </ul>
+    <div class="bottom">
+        <div>👤 Người dùng</div>
+        <div>⎋ Đăng xuất</div>
+    </div>
+</div>
+<div class="main">
+    <div class="header">
+        <div class="title">Trang Quản Lý Voucher Đồ Ăn Nhanh</div>
+        <input class="search" placeholder="Tìm kiếm mã, tên, loại, voucher...">
+        <div class="user">Chào Admin<br><b>Thanh Mai</b></div>
+    </div>
+    <div class="toolbar">
+        <button class="active">Tất cả</button>
+        <button>Burger</button>
+        <button>Pizza</button>
+        <button>Gà rán</button>
+        <button>Combo</button>
+        <button class="create">Tạo voucher mới</button>
+    </div>
+    <table class="voucher-table">
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Mã voucher</th>
+                <th>Tên & Hình ảnh</th>
+                <th>Loại</th>
+                <th>Ưu đãi & điều kiện</th>
+                <th>Hạn sử dụng</th>
+                <th>Trạng thái</th>
+                <th>Tác vụ</th>
+            </tr>
+        </thead>
+        <tbody id="voucherList">
+            <!-- Voucher rows sẽ được render ở đây bằng JS -->
+        </tbody>
+    </table>
+</div>
+<script src="voucher-admin.js"></script>
+</body>
+</html>

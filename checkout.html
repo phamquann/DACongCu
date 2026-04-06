@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - FoodHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+        }
+
+        .left-section {
+            padding: 25px;
+            border-right: 1px solid #f0f0f0;
+        }
+
+        .right-section {
+            padding: 25px;
+            background: #fafafa;
+        }
+
+        /* Delivery Section */
+        .delivery-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            gap: 8px;
+        }
+
+        .delivery-info {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #ff8c00;
+        }
+
+        .delivery-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .delivery-phone {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .delivery-address {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .change-btn {
+            color: #ff8c00;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #666;
+            gap: 8px;
+        }
+
+        /* Menu Items */
+        .menu-items {
+            margin-bottom: 25px;
+        }
+
+        .menu-item {
+            display: flex;
+            gap: 12px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            font-size: 13px;
+            color: #ff8c00;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #ff8c00;
+            padding: 0 5px;
+        }
+
+        .qty-input {
+            width: 30px;
+            text-align: center;
+            border: none;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Discount Section */
+        .discount-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .discount-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .discount-input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .discount-btn {
+            padding: 10px 20px;
+            background: #ff8c00;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .discount-btn:hover {
+            background: #ff7b00;
+        }
+
+        .discount-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: #ffe8cc;
+            color: #ff8c00;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Payment Method */
+        .payment-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .radio.checked {
+            border-color: #ff8c00;
+            background: #fffaf5;
+        }
+
+        .radio.checked::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #ff8c00;
+            border-radius: 50%;
+        }
+
+        .payment-label {
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Summary */
+        .summary-section {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .summary-row.total {
+            border-top: 2px solid #e0e0e0;
+            padding-top: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 15px;
+        }
+
+        .summary-row.total .price {
+            color: #ff8c00;
+            font-size: 18px;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 14px;
+            background: #ff8c00;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .order-btn:hover {
+            background: #ff7b00;
+        }
+
+        .note {
+            text-align: center;
+            font-size: 12px;
+            color: #ff8c00;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section {
+                border-right: none;
+                border-bottom: 1px solid #f0f0f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-title">✓ Thanh Toán</div>
+            <div class="header-subtitle">Kiểm tra và hoàn tất đơn hàng</div>
+        </div>
+
+        <div class="content">
+            <div class="left-section">
+                <!-- Delivery Section -->
+                <div class="delivery-section">
+                    <div class="section-title">
+                        📍 Địa Chỉ Giao Hàng
+                    </div>
+                    <div class="delivery-info">
+                        <div class="delivery-name">Nguyễn Văn A</div>
+                        <div class="delivery-phone">0123456789</div>
+                        <div class="delivery-address">123, đường Nguyễn Huệ, phường Bến Nghé, quận 1, TP.HCM</div>
+                        <div class="delivery-time">
+                            ⏱ Thời gian giao hàng dự kiến: 30–40 phút
+                        </div>
+                        <div class="change-btn">Thay đổi</div>
+                    </div>
+                </div>
+
+                <!-- Menu Items -->
+                <div class="menu-items">
+                    <div class="section-title">Đơn hàng (2 món):</div>
+
+                    <div class="menu-item">
+                        <div class="item-image">🍞</div>
+                        <div class="item-details">
+                            <div class="item-name">Bánh mì</div>
+                            <div class="item-price">45.000đ</div>
+                            <div class="item-controls">
+                                <div class="qty-control">
+                                    <button class="qty-btn">−</button>
+                                    <input type="number" class="qty-input" value="2" readonly>
+                                    <button class="qty-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-image">🍲</div>
+                        <div class="item-details">
+                            <div class="item-name">Bánh chả</div>
+                            <div class="item-price">66.000đ</div>
+                            <div class="item-controls">
+                                <div class="qty-control">
+                                    <button class="qty-btn">−</button>
+                                    <input type="number" class="qty-input" value="1" readonly>
+                                    <button class="qty-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discount Section -->
+                <div class="discount-section">
+                    <div class="section-title">💰 Mã Giảm Giá</div>
+                    <div class="discount-input-group">
+                        <input type="text" class="discount-input" placeholder="Nhập mã giảm giá">
+                        <button class="discount-btn">Áp Dụng</button>
+                    </div>
+                    <div class="discount-tags">
+                        <div class="tag">FREESHIP</div>
+                        <div class="tag">GIẢM20K</div>
+                    </div>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="payment-section">
+                    <div class="section-title">💳 Phương Thức Thanh Toán</div>
+                    
+                    <div class="payment-option">
+                        <div class="radio checked"></div>
+                        <span class="payment-label">Tiền mặt</span>
+                    </div>
+
+                    <div class="payment-option">
+                        <div class="radio"></div>
+                        <span class="payment-label">Ví MoMo</span>
+                    </div>
+
+                    <div class="payment-option">
+                        <div class="radio"></div>
+                        <span class="payment-label">Thẻ tín dụng/Ghi nợ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Summary Section -->
+            <div class="right-section">
+                <div class="summary-section">
+                    <div class="summary-row">
+                        <span>Tạm tính</span>
+                        <span>215.000đ</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Phí giao hàng</span>
+                        <span>15.000đ</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Tổng cộng</span>
+                        <span class="price">230.000đ</span>
+                    </div>
+                </div>
+
+                <button class="order-btn">ĐẶT HÀNG</button>
+                <div class="note">ℹ Lưu ý: Vui lòng kiểm tra kỹ thông tin trước khi đặt hàng</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle quantity controls
+        document.querySelectorAll('.qty-control').forEach(control => {
+            const minusBtn = control.querySelector('.qty-btn:first-child');
+            const plusBtn = control.querySelector('.qty-btn:last-child');
+            const input = control.querySelector('.qty-input');
+
+            minusBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                let qty = parseInt(input.value);
+                if (qty > 1) input.value = qty - 1;
+            });
+
+            plusBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                let qty = parseInt(input.value);
+                input.value = qty + 1;
+            });
+        });
+
+        // Handle payment method selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            const radio = option.querySelector('.radio');
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.radio').forEach(r => r.classList.remove('checked'));
+                radio.classList.add('checked');
+            });
+        });
+
+        // Handle discount tags
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                const code = tag.textContent;
+                document.querySelector('.discount-input').value = code;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,62 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastFood - Hồ sơ người dùng</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="css/thong-bao.css">
+    <title>Hồ sơ cá nhân - FoodHub</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(180deg, #fff7ed 0, #f5f5f5 220px); color: #333; }
+        .wrapper { max-width: 980px; margin: 0 auto; padding: 24px 16px; }
+        .card { background: #fff; border-radius: 16px; box-shadow: 0 18px 45px rgba(0,0,0,0.12); overflow: hidden; }
+        .header { padding: 22px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .profile-head { display: flex; align-items: center; gap: 14px; }
+        .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #fb923c, #f97316); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+        .name { font-size: 20px; font-weight: 700; }
+        .stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; padding: 0 22px 22px; }
+        .stat { background: #fafafa; border-radius: 12px; padding: 12px; }
+        .stat .label { color: #777; font-size: 12px; text-transform: uppercase; }
+        .stat .value { margin-top: 6px; font-weight: 700; }
+        .form-wrap { padding: 0 22px 22px; }
+        .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+        label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #666; }
+        input { padding: 11px 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; background: #fafafa; }
+        .actions { display: flex; gap: 10px; padding: 0 22px 18px; }
+        .btn { border: none; border-radius: 10px; padding: 10px 14px; font-weight: 700; cursor: pointer; }
+        .btn.primary { background: #f97316; color: #fff; }
+        .btn.ghost { background: #fff; border: 1px solid #ddd; }
+        #profile-message { padding: 0 22px 22px; min-height: 20px; font-size: 14px; }
+        @media (max-width: 768px) {
+            .wrapper { padding: 14px; }
+            .form-grid, .stats { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <div class="page full-width">
-        <div class="column column-right" style="max-width: 100%;">
-            <div class="profile-card">
-                <div class="brand-bar">MinhQuanFood</div>
-                <div class="profile-body">
-                    <div class="profile-left">
-                        <div class="avatar large">PQ</div>
-                        <p class="name">Phạm Quân</p>
-                        <nav class="side-nav">
-                            <a class="nav-item active"><i class="fa-regular fa-address-card"></i> Hồ sơ</a>
-                            <a class="nav-item"><i class="fa-regular fa-file-lines"></i> Đơn hàng</a>
-                            <a class="nav-item"><i class="fa-regular fa-heart"></i> Yêu thích</a>
-                            <a class="nav-item"><i class="fa-regular fa-map"></i> Địa chỉ</a>
-                        </nav>
-                    </div>
-
-                    <div class="profile-right">
-                        <div class="info-card compact">
-                            <div class="info-head">
-                                <p class="label">Thông tin cá nhân</p>
-                                <a href="#" class="edit-link"><i class="fa-regular fa-pen-to-square"></i> Chỉnh sửa</a>
-                            </div>
-                            <div class="form-grid">
-                                <label>
-                                    <span>Họ và tên</span>
-                                    <input type="text" placeholder="Phạm Quân" disabled>
-                                </label>
-                                <label>
-                                    <span>Email</span>
-                                    <input type="text" placeholder="quan@email.com" disabled>
-                                </label>
-                                <label>
-                                    <span>Số điện thoại</span>
-                                    <input type="text" placeholder="0909 999 999" disabled>
-                                </label>
-                                <label>
-                                    <span>Ngày sinh</span>
-                                    <input type="text" placeholder="12/03/1996" disabled>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="stats">
-                            <div class="stat-tile mint"></div>
-                            <div class="stat-tile green"></div>
-                            <div class="stat-tile blue"></div>
-                        </div>
+    <div class="wrapper">
+        <div class="card">
+            <div class="header">
+                <div class="profile-head">
+                    <div class="avatar" id="profile-avatar">--</div>
+                    <div>
+                        <div class="name" id="profile-name">Khách hàng</div>
+                        <div style="margin-top:4px;color:#777;">Quản lý thông tin cá nhân</div>
                     </div>
                 </div>
+                <div class="actions" style="padding:0;">
+                    <button id="profile-edit-btn" class="btn ghost" type="button">Chỉnh sửa</button>
+                    <button id="profile-save-btn" class="btn primary" type="button" style="display:none;">Lưu</button>
+                </div>
             </div>
+
+            <div class="stats">
+                <div class="stat"><div class="label">Tổng đơn</div><div class="value" id="profile-stat-orders">0 đơn</div></div>
+                <div class="stat"><div class="label">Đang xử lý</div><div class="value" id="profile-stat-active">0</div></div>
+                <div class="stat"><div class="label">Đã đánh giá</div><div class="value" id="profile-stat-reviewed">0</div></div>
+            </div>
+
+            <div class="form-wrap">
+                <form id="profile-form" class="form-grid">
+                    <label>Họ và tên<input id="profile-full-name" type="text" disabled></label>
+                    <label>Email<input id="profile-email" type="email" disabled></label>
+                    <label>Số điện thoại<input id="profile-phone" type="text" disabled></label>
+                    <label>Ngày sinh<input id="profile-dob" type="date" disabled></label>
+                    <label style="grid-column:1 / -1;">Địa chỉ<input id="profile-address" type="text" disabled></label>
+                </form>
+            </div>
+
+            <p id="profile-message"></p>
         </div>
     </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/profile.js"></script>
 </body>
 </html>

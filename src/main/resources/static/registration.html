@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản - FoodHub</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #fff7ed, #f5f5f5); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+        .container { display: flex; width: 100%; max-width: 1040px; margin: 0 auto; background: white; box-shadow: 0 18px 45px rgba(0,0,0,0.12); min-height: 680px; border-radius: 24px; overflow: hidden; }
+        .left-section { flex: 1; background: linear-gradient(135deg, #ff8c00 0%, #ff7b00 100%); color: white; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; }
+        .logo { display: flex; align-items: center; margin-bottom: 20px; }
+        .logo-icon { width: 30px; height: 30px; background: white; border-radius: 4px; margin-right: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #ff8c00; }
+        .logo-text { font-size: 18px; font-weight: bold; }
+        .heading { font-size: 36px; font-weight: bold; margin-bottom: 10px; line-height: 1.2; }
+        .subheading { font-size: 14px; opacity: 0.95; margin-bottom: 30px; }
+        .features { display: flex; flex-direction: column; gap: 15px; }
+        .feature { display: flex; align-items: flex-start; gap: 10px; }
+        .feature-icon { width: 20px; height: 20px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff8c00; font-weight: bold; flex-shrink: 0; margin-top: 2px; }
+        .feature-title { font-weight: bold; margin-bottom: 3px; }
+        .feature-text { font-size: 13px; }
+        .right-section { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        .form-title { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #333; }
+        .form-subtitle { font-size: 13px; color: #999; margin-bottom: 25px; }
+        .form-group { margin-bottom: 18px; }
+        .form-label { display: block; font-size: 14px; font-weight: 500; color: #333; margin-bottom: 8px; }
+        .form-input { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .form-input:focus { outline: none; border-color: #ff8c00; box-shadow: 0 0 5px rgba(255, 140, 0, 0.2); }
+        .btn { width: 100%; padding: 14px; font-size: 16px; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; background: #ff8c00; color: white; }
+        .btn:hover { background: #ff7b00; }
+        .login-link { text-align: center; margin-top: 15px; font-size: 13px; color: #666; }
+        .login-link a { color: #ff8c00; text-decoration: none; font-weight: bold; }
+        #register-message { margin-top: 16px; font-size: 14px; min-height: 20px; }
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .container { flex-direction: column; min-height: auto; border-radius: 18px; }
+            .left-section, .right-section { padding: 30px 20px; }
+            .heading { font-size: 28px; }
+            .form-title { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div>
+                <div class="logo">
+                    <div class="logo-icon">F</div>
+                    <div class="logo-text">FOODHUB</div>
+                </div>
+                <div class="heading">Đặt món ngon<br>giao tận nơi</div>
+                <div class="subheading">Tạo tài khoản để lưu địa chỉ, theo dõi đơn và nhận ưu đãi nhanh hơn.</div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div><div class="feature-title">Giao hàng nhanh</div><div class="feature-text">Theo dõi trạng thái đơn theo thời gian thực.</div></div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div><div class="feature-title">Ưu đãi cá nhân hóa</div><div class="feature-text">Lưu voucher và áp dụng ngay khi thanh toán.</div></div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div><div class="feature-title">Quản lý đơn hàng</div><div class="feature-text">Xem hóa đơn, đánh giá và hồ sơ ngay trên web.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <h2 class="form-title">Đăng ký tài khoản</h2>
+            <p class="form-subtitle">Điền đủ thông tin để bắt đầu đặt món.</p>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label class="form-label" for="register-full-name">Họ và tên</label>
+                    <input id="register-full-name" name="fullName" type="text" class="form-input" placeholder="Nhập họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-email">Email</label>
+                    <input id="register-email" name="email" type="email" class="form-input" placeholder="example@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-phone">Số điện thoại</label>
+                    <input id="register-phone" name="phone" type="tel" class="form-input" placeholder="0123456789" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-address">Địa chỉ</label>
+                    <input id="register-address" name="address" type="text" class="form-input" placeholder="Số nhà, đường, quận, thành phố" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-dob">Ngày sinh</label>
+                    <input id="register-dob" name="dateOfBirth" type="date" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-password">Mật khẩu</label>
+                    <input id="register-password" name="password" type="password" class="form-input" placeholder="Tối thiểu 6 ký tự" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-confirm-password">Xác nhận mật khẩu</label>
+                    <input id="register-confirm-password" name="confirmPassword" type="password" class="form-input" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                <button type="submit" class="btn">ĐĂNG KÝ</button>
+                <p id="register-message"></p>
+            </form>
+
+            <div class="login-link">
+                Đã có tài khoản? <a href="/login">Đăng nhập ngay</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

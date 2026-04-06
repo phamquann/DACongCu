@@ -15,7 +15,7 @@
             <div class="logo">
                 <i class="fa-solid fa-utensils"></i> FastFood
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="home-category-nav">
                 <li><a href="#" class="active">Đồ ăn</a></li>
                 <li><a href="#">Thực phẩm</a></li>
                 <li><a href="#">Rượu bia</a></li>
@@ -25,7 +25,7 @@
             </ul>
             <div class="nav-actions">
                 <button class="icon-btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <button class="btn-login">Đăng nhập</button>
+                <button class="btn-login" id="home-login-btn" type="button">Đăng nhập</button>
             </div>
         </div>
     </nav>
@@ -35,8 +35,8 @@
         <div class="hero-content">
             <!-- Left Side Search -->
             <div class="search-box-large">
-                <input type="text" placeholder="Tìm món ăn, địa điểm...">
-                <button class="btn-search-primary">
+                <input id="home-search-input" type="text" placeholder="Tìm món ăn, địa điểm...">
+                <button class="btn-search-primary" id="home-search-button" type="button">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -52,10 +52,10 @@
                 
                 <div class="menu-subheader">
                     <h3>Đồ ăn / Đồ ăn</h3>
-                    <a href="#" class="view-all">Xem tất cả <i class="fa-solid fa-chevron-right"></i></a>
+                    <button id="home-browse-btn" type="button" class="btn-login" style="padding:6px 12px;font-size:12px;">Đặt món ngay</button>
                 </div>
 
-                <div class="food-grid">
+                <div class="food-grid" id="home-menu-grid">
                     <!-- Item 1 -->
                     <div class="food-item">
                         <div class="img-wrapper">
@@ -105,5 +105,8 @@
             </div>
         </div>
     </main>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/home.js"></script>
 </body>
 </html>

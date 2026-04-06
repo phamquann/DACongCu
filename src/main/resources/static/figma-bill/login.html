@@ -217,6 +217,14 @@
             background-color: #f9f9f9;
         }
 
+        #login-message {
+            margin-top: 12px;
+            min-height: 20px;
+            font-size: 14px;
+            text-align: center;
+            color: #b42318;
+        }
+
         /* Thêm CSS cho logo Google */
         .google-img {
             width: 20px;
@@ -228,14 +236,14 @@
 
 <div class="login-container">
     <div class="login-banner">
-        <img th:src="@{/images/DOANNHAMJ.jpg}" alt="Fast Food Banner" class="banner-img" src="../images/DOANNHAMJ.jpg">
+        <img th:src="@{/images/DOANNHAMJ.jpg}" alt="Fast Food Banner" class="banner-img" src="/images/DOANNHAMJ.jpg">
     </div>
 
     <div class="login-form-section">
         <div class="form-wrapper">
             <h2>Đăng nhập</h2>
             
-            <form th:action="@{/login}" method="post">
+            <form id="login-form" th:action="@{/login}" method="post">
                 <div class="input-group">
                     <i class="fa-solid fa-circle-info icon-left"></i>
                     <input type="text" name="username" placeholder="Nhập email hoặc số điện thoại" required>
@@ -255,6 +263,7 @@
                 </div>
 
                 <button type="submit" class="btn-login">Đăng nhập</button>
+                <p id="login-message"></p>
 
                 <div class="register-link">
                     Chưa có tài khoản? <a href="/register">Đăng ký</a>
@@ -273,5 +282,7 @@
     </div>
 </div>
 
+<script src="/js/common.js"></script>
+<script src="/js/auth.js"></script>
 </body>
 </html>

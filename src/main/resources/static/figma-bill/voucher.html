@@ -1,307 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ưu đãi hấp dẫn - Voucher</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* Reset cơ bản */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #fffaf5; /* Màu nền hơi ngả vàng nhạt giống thiết kế */
-            color: #333;
-        }
-
-        /* --- 1. PHẦN BANNER --- */
-        .voucher-banner {
-            background-color: #f97316; /* Màu cam chói */
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .voucher-banner h1 {
-            font-size: 32px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .voucher-banner p {
-            font-size: 18px;
-            font-weight: 400;
-        }
-
-        /* --- 2. PHẦN BỘ LỌC (FILTER) --- */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-            flex-wrap: wrap; /* Cho phép rớt dòng trên màn hình nhỏ */
-        }
-
-        .filter-btn {
-            background-color: white;
-            border: 1px solid #ddd;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #333;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover {
-            border-color: #f97316;
-            color: #f97316;
-        }
-
-        .filter-btn.active {
-            background-color: #f97316;
-            color: white;
-            border-color: #f97316;
-        }
-
-        /* --- 3. LƯỚI VOUCHER --- */
-        .voucher-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 50px 20px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Chia 4 cột đều nhau */
-            gap: 20px;
-        }
-
-        /* Thẻ Voucher */
-        .voucher-card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s;
-        }
-
-        .voucher-card:hover {
-            transform: translateY(-5px); /* Hiệu ứng nảy lên khi di chuột */
-        }
-
-        /* Khung chứa ảnh & Badge */
-        .card-image {
-            position: relative;
-            height: 180px;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Hiển thị trọn vẹn ảnh đồ ăn */
-        }
-
-        .discount-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: #ef4444; /* Màu đỏ */
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Nội dung thẻ */
-        .card-content {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .card-desc {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .card-conditions {
-            font-size: 12px;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .card-conditions p {
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Nút copy mã */
-        .card-action {
-            display: flex;
-            gap: 10px;
-            margin-top: auto; /* Đẩy phần này xuống đáy thẻ */
-        }
-
-        .promo-code {
-            flex: 1;
-            background-color: #f97316;
-            color: white;
-            text-align: center;
-            padding: 8px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .btn-copy {
-            background-color: white;
-            border: 2px solid #f97316;
-            color: #f97316;
-            border-radius: 6px;
-            width: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-copy:hover {
-            background-color: #fff0e6;
-        }
-
-        /* Hiển thị Responsive (Tự động co giãn trên điện thoại/tablet) */
-        @media (max-width: 992px) {
-            .voucher-container { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 576px) {
-            .voucher-container { grid-template-columns: 1fr; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #fffaf5; color: #333; }
+        .voucher-banner { background-color: #f97316; color: white; text-align: center; padding: 40px 20px; }
+        .voucher-banner h1 { font-size: 32px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 15px; }
+        .voucher-banner p { font-size: 18px; font-weight: 400; }
+        .filter-container { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; padding: 0 20px; }
+        .filter-btn { background-color: white; border: 1px solid #ddd; padding: 10px 20px; border-radius: 30px; font-size: 16px; font-weight: 500; color: #333; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .filter-btn.active { background-color: #f97316; color: white; border-color: #f97316; }
+        .voucher-container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .voucher-card { background-color: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); display: flex; flex-direction: column; transition: transform 0.3s; }
+        .voucher-card:hover { transform: translateY(-5px); }
+        .card-image { position: relative; height: 180px; padding: 15px; display: flex; justify-content: center; align-items: center; }
+        .card-image img { width: 100%; height: 100%; object-fit: contain; }
+        .discount-badge { position: absolute; top: 15px; right: 15px; background-color: #ef4444; color: white; padding: 4px 10px; border-radius: 20px; font-size: 14px; font-weight: bold; }
+        .card-content { padding: 15px; display: flex; flex-direction: column; flex: 1; }
+        .card-title { font-size: 18px; font-weight: 600; margin-bottom: 5px; }
+        .card-desc { font-size: 13px; color: #666; margin-bottom: 15px; line-height: 1.4; }
+        .card-conditions { font-size: 12px; color: #555; margin-bottom: 15px; }
+        .card-conditions p { margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .card-action { display: flex; gap: 10px; margin-top: auto; }
+        .promo-code { flex: 1; background-color: #f97316; color: white; text-align: center; padding: 8px; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; }
+        .btn-copy { background-color: white; border: 2px solid #f97316; color: #f97316; border-radius: 6px; width: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        @media (max-width: 992px) { .voucher-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 576px) { .voucher-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
     <header class="voucher-banner">
         <h1><i class="fa-solid fa-ticket"></i> Ưu đãi hấp dẫn</h1>
         <p>Khám phá các voucher giảm giá độc quyền cho đồ ăn nhanh yêu thích của bạn</p>
     </header>
 
     <div class="filter-container">
-        <button class="filter-btn active"><i class="fa-solid fa-border-all"></i> Tất cả</button>
-        <button class="filter-btn"><i class="fa-solid fa-burger"></i> Burger</button>
-        <button class="filter-btn"><i class="fa-solid fa-pizza-slice"></i> Pizza</button>
-        <button class="filter-btn"><i class="fa-solid fa-drumstick-bite"></i> Gà rán</button>
-        <button class="filter-btn"><i class="fa-solid fa-box"></i> Combo</button>
+        <button class="filter-btn active" data-category-code=""><i class="fa-solid fa-border-all"></i> Tất cả</button>
+        <button class="filter-btn" data-category-code="BURGER"><i class="fa-solid fa-burger"></i> Burger</button>
+        <button class="filter-btn" data-category-code="PIZZA"><i class="fa-solid fa-pizza-slice"></i> Pizza</button>
+        <button class="filter-btn" data-category-code="FRIED_CHICKEN"><i class="fa-solid fa-drumstick-bite"></i> Gà rán</button>
+        <button class="filter-btn" data-category-code="COMBO"><i class="fa-solid fa-box"></i> Combo</button>
     </div>
 
-    <div class="voucher-container">
-        
-        <div class="voucher-card">
-            <div class="card-image">
-                <span class="discount-badge">50%</span>
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Burger">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Giảm 50% Burger</h3>
-                <p class="card-desc">Áp dụng cho tất cả các loại burger</p>
-                <div class="card-conditions">
-                    <p><i class="fa-solid fa-cart-shopping"></i> Đơn tối thiểu: 100.000đ</p>
-                    <p><i class="fa-regular fa-clock"></i> HSD: 28/02/2026</p>
-                </div>
-                <div class="card-action">
-                    <div class="promo-code">BURGER50</div>
-                    <button class="btn-copy" title="Copy mã"><i class="fa-regular fa-copy"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="voucher-card">
-            <div class="card-image">
-                <span class="discount-badge">30K</span>
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80" alt="Pizza">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Giảm 30K Pizza</h3>
-                <p class="card-desc">Giảm 30.000đ cho đơn pizza từ 150.000đ</p>
-                <div class="card-conditions">
-                    <p><i class="fa-solid fa-cart-shopping"></i> Đơn tối thiểu: 150.000đ</p>
-                    <p><i class="fa-regular fa-clock"></i> HSD: 15/02/2026</p>
-                </div>
-                <div class="card-action">
-                    <div class="promo-code">PIZZA30K</div>
-                    <button class="btn-copy"><i class="fa-regular fa-copy"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="voucher-card">
-            <div class="card-image">
-                <span class="discount-badge">20%</span>
-                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=80" alt="Gà Rán">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Giảm 40% Gà Rán</h3>
-                <p class="card-desc">Ưu đãi đặc biệt cho gà rán</p>
-                <div class="card-conditions">
-                    <p><i class="fa-solid fa-cart-shopping"></i> Đơn tối thiểu: 120.000đ</p>
-                    <p><i class="fa-regular fa-clock"></i> HSD: 10/03/2026</p>
-                </div>
-                <div class="card-action">
-                    <div class="promo-code">GARAN20</div>
-                    <button class="btn-copy"><i class="fa-regular fa-copy"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="voucher-card">
-            <div class="card-image">
-                <span class="discount-badge">1+2</span>
-                <img th:src="@{/images/voucher.jpg}" alt="Combo" src="../images/voucher.jpg">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Mua 1 Tặng 2</h3>
-                <p class="card-desc">Mua combo gà rán tặng 1 coca và khoai tây chiên</p>
-                <div class="card-conditions">
-                    <p style="visibility: hidden;"><i class="fa-solid fa-cart-shopping"></i> Đơn tối thiểu: 0đ</p> <p><i class="fa-regular fa-clock"></i> HSD: 25/02/2026</p>
-                </div>
-                <div class="card-action">
-                    <div class="promo-code">COMBO3X</div>
-                    <button class="btn-copy"><i class="fa-regular fa-copy"></i></button>
-                </div>
-            </div>
-        </div>
-
+    <div id="voucher-list" class="voucher-container">
+        <p>Đang tải voucher...</p>
     </div>
 
+    <script src="/js/common.js"></script>
+    <script src="/js/vouchers.js"></script>
 </body>
 </html>

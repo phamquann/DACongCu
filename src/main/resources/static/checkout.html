@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán - FoodHub</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(180deg, #fff7ed 0, #f5f5f5 220px); min-height: 100vh; padding: 24px 16px; color: #333; }
+        .container { max-width: 960px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 18px 45px rgba(0,0,0,0.12); }
+        .header { background: white; padding: 24px; border-bottom: 1px solid #f0f0f0; }
+        .header-title { font-size: 24px; font-weight: bold; color: #333; margin-bottom: 15px; }
+        .header-subtitle { font-size: 13px; color: #999; }
+        .content { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.95fr); gap: 0; }
+        .left-section { padding: 25px; border-right: 1px solid #f0f0f0; min-width: 0; }
+        .right-section { padding: 25px; background: #fafafa; display: flex; flex-direction: column; justify-content: flex-start; }
+        .section-title { display: flex; align-items: center; font-size: 16px; font-weight: bold; color: #333; margin-bottom: 15px; gap: 8px; }
+        .delivery-info { background: #f9f9f9; padding: 16px; border-radius: 10px; border-left: 3px solid #ff8c00; }
+        .delivery-field { width: 100%; margin-bottom: 10px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; resize: vertical; }
+        .delivery-time { display: flex; align-items: center; margin-top: 12px; font-size: 13px; color: #666; gap: 8px; }
+        .menu-items { margin-bottom: 25px; }
+        .menu-item { display: flex; gap: 12px; padding: 15px; background: #f9f9f9; border-radius: 10px; margin-bottom: 12px; align-items: flex-start; }
+        .item-image { width: 80px; height: 80px; background: #fff3e6; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+        .item-details { flex: 1; min-width: 0; }
+        .item-name { font-weight: bold; color: #333; margin-bottom: 5px; }
+        .item-price { font-size: 13px; color: #ff8c00; font-weight: bold; margin-bottom: 8px; }
+        .item-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .qty-control { display: flex; align-items: center; gap: 8px; background: white; padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd; }
+        .qty-btn { background: none; border: none; font-size: 16px; cursor: pointer; color: #ff8c00; padding: 0 5px; }
+        .qty-input { width: 30px; text-align: center; border: none; font-weight: bold; color: #333; }
+        .discount-section, .payment-section { margin-top: 25px; padding-top: 25px; border-top: 1px solid #e0e0e0; }
+        .discount-input-group { display: flex; gap: 8px; margin-bottom: 12px; }
+        .discount-input { flex: 1; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
+        .discount-btn { padding: 10px 20px; background: #ff8c00; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .discount-tags { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+        .tag { background: #ffe8cc; color: #ff8c00; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .payment-option { display: flex; align-items: center; gap: 10px; padding: 12px; margin-bottom: 10px; cursor: pointer; border: 1px solid #e5e7eb; border-radius: 10px; background: white; }
+        .radio { width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .radio.checked { border-color: #ff8c00; background: #fffaf5; }
+        .radio.checked::after { content: ""; width: 10px; height: 10px; background: #ff8c00; border-radius: 50%; }
+        .summary-section { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06); }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; color: #666; }
+        .summary-row.total { border-top: 2px solid #e0e0e0; padding-top: 12px; font-size: 16px; font-weight: bold; color: #333; margin-top: 15px; }
+        .summary-row.total .price { color: #ff8c00; font-size: 18px; }
+        .order-btn { width: 100%; padding: 14px; background: #ff8c00; color: white; font-size: 16px; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; }
+        .order-btn:disabled { opacity: 0.7; cursor: wait; }
+        .note { text-align: center; font-size: 12px; color: #ff8c00; margin-top: 12px; }
+        #checkout-message { margin-top: 14px; font-size: 14px; min-height: 20px; }
+        @media (max-width: 768px) {
+            body { padding: 16px 12px; }
+            .content { grid-template-columns: 1fr; }
+            .left-section { border-right: none; border-bottom: 1px solid #f0f0f0; }
+            .left-section, .right-section, .header { padding: 20px; }
+        }
+        @media (max-width: 560px) {
+            .header-title { font-size: 22px; }
+            .menu-item { flex-direction: column; }
+            .item-image { width: 64px; height: 64px; }
+            .discount-input-group { flex-direction: column; }
+            .order-btn { margin-top: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-title">Thanh toán</div>
+            <div class="header-subtitle">Kiểm tra thông tin giao hàng và hoàn tất đơn.</div>
+        </div>
+
+        <div class="content">
+            <div class="left-section">
+                <div class="delivery-section">
+                    <div class="section-title">📍 Địa chỉ giao hàng</div>
+                    <div class="delivery-info">
+                        <input id="checkout-name" class="delivery-field" type="text" placeholder="Tên người nhận">
+                        <input id="checkout-phone" class="delivery-field" type="text" placeholder="Số điện thoại">
+                        <textarea id="checkout-address" class="delivery-field" rows="3" placeholder="Địa chỉ giao hàng"></textarea>
+                        <textarea id="checkout-note" class="delivery-field" rows="2" placeholder="Ghi chú cho đơn hàng"></textarea>
+                        <div class="delivery-time">
+                            ⏱ Lịch giao dự kiến: <strong id="checkout-schedule">Giao ngay</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-items">
+                    <div class="section-title">Đơn hàng</div>
+                    <div id="checkout-items"></div>
+                </div>
+
+                <div class="discount-section">
+                    <div class="section-title">💰 Mã giảm giá</div>
+                    <div class="discount-input-group">
+                        <input id="checkout-voucher-input" type="text" class="discount-input" placeholder="Nhập mã giảm giá">
+                        <button id="checkout-apply-voucher" class="discount-btn" type="button">Áp dụng</button>
+                    </div>
+                    <div class="discount-tags" id="checkout-voucher-tags"></div>
+                </div>
+
+                <div class="payment-section">
+                    <div class="section-title">💳 Phương thức thanh toán</div>
+                    <div class="payment-option" data-method="CASH"><div class="radio checked"></div><span class="payment-label">Tiền mặt</span></div>
+                    <div class="payment-option" data-method="MOMO"><div class="radio"></div><span class="payment-label">Ví MoMo</span></div>
+                    <div class="payment-option" data-method="CARD"><div class="radio"></div><span class="payment-label">Thẻ tín dụng / ghi nợ</span></div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="summary-section">
+                    <div class="summary-row"><span>Tạm tính</span><span id="checkout-subtotal">0đ</span></div>
+                    <div class="summary-row"><span>Phí giao hàng</span><span id="checkout-shipping">0đ</span></div>
+                    <div class="summary-row"><span>Giảm giá</span><span id="checkout-discount">0đ</span></div>
+                    <div class="summary-row total"><span>Tổng cộng</span><span class="price" id="checkout-total">0đ</span></div>
+                </div>
+
+                <button id="checkout-submit" class="order-btn" type="button">ĐẶT HÀNG</button>
+                <div class="note">Sau khi đặt hàng, bạn có thể theo dõi trạng thái, xem hóa đơn và đánh giá ngay trên web.</div>
+                <p id="checkout-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Đánh giá & Phản hồi</title>
+    <!-- Use modern Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/danh-gia.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="dashboard-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-icons">
+                    <a href="#" class="icon-btn active"><i class="fa-solid fa-house"></i></a>
+                    <a href="#" class="icon-btn"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Header -->
+                <header class="top-header">
+                    <h2>Quản lý Đánh giá & Phản hồi_NhuLieu</h2>
+                    <div class="user-profile">
+                        <i class="fa-regular fa-circle-user"></i>
+                    </div>
+                </header>
+
+                <div class="content-wrapper">
+                    <!-- Quick Stats Section -->
+                    <section class="stats-card-group">
+                        <h3 class="section-title">Quick Stats</h3>
+                        <div class="cards-container">
+                            <div class="stat-card blue-card">
+                                <div class="card-info">
+                                    <h4>Điểm đánh giá trung bình</h4>
+                                    <div class="stat-value">
+                                        <span class="number">4.8</span>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="chart-mockup">
+                                    <svg width="80" height="40" viewBox="0 0 100 40">
+                                        <path d="M0,35 L20,25 L40,35 L60,15 L80,25 L100,0" fill="none" stroke="#FFCA28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="100" cy="0" r="4" fill="#FFCA28" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="stat-card pink-card">
+                                <div class="card-info">
+                                    <h4>Đang chờ phản hồi</h4>
+                                    <div class="stat-value">
+                                        <span class="number">12</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card green-card">
+                                <div class="card-info">
+                                    <h4>Đánh giá tiêu cực (1-2*)</h4>
+                                    <div class="stat-value">
+                                        <span class="number">4</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Filter & Search Section -->
+                    <section class="filter-section">
+                        <h3 class="section-title">Filter & Search</h3>
+                        <div class="filter-controls">
+                            <div class="input-group search-group">
+                                <input type="text" placeholder="Tìm khách hàng, sản phẩm..." class="filter-input search-input">
+                            </div>
+                            <div class="input-group">
+                                <select class="filter-input select-input">
+                                    <option>Lọc theo điểm đánh giá (Tất cả)</option>
+                                    <option>5 Sao</option>
+                                    <option>4 Sao</option>
+                                    <option>3 Sao</option>
+                                    <option>1-2 Sao</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select class="filter-input select-input">
+                                    <option>Trạng thái</option>
+                                    <option>Đã phản hồi</option>
+                                    <option>Chờ phản hồi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Table Section -->
+                    <section class="table-section">
+                        <div class="table-container">
+                            <div class="table-header-custom">
+                                <h3>Bảng đánh giá</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="review-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Khách hàng</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Chi tiết đánh giá</th>
+                                            <th>Ngày gửi</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Real data starts here -->
+                                        <tr>
+                                            <td>Nguyễn Văn A</td>
+                                            <td>Burger Phô Mai</td>
+                                            <td>Rất ngon, phục vụ tốt.</td>
+                                            <td>04/04/2026</td>
+                                            <td><span class="status-badge success">Đã phản hồi</span></td>
+                                            <td><button class="btn-action">Chi tiết</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Trần Thị B</td>
+                                            <td>Gà Rán (Phần 1)</td>
+                                            <td>Gà hơi nguội.</td>
+                                            <td>03/04/2026</td>
+                                            <td><span class="status-badge warning">Chờ phản hồi</span></td>
+                                            <td><button class="btn-action primary">Phản hồi</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lê Văn C</td>
+                                            <td>Khoai Tây Chiên</td>
+                                            <td>Ngon tuyệt vời!</td>
+                                            <td>02/04/2026</td>
+                                            <td><span class="status-badge success">Đã phản hồi</span></td>
+                                            <td><button class="btn-action">Chi tiết</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

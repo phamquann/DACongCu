@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFood - Thông báo</title>
+    <!-- Use modern Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/thong-bao.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Header -->
+        <header class="top-bar">
+            <div class="logo">
+                <i class="fa-solid fa-utensils"></i> FastFood
+            </div>
+            <div class="user-profile">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="nav-icons-top">
+                    <a href="#" class="icon-btn"><i class="fa-solid fa-house"></i></a>
+                    <a href="#" class="icon-btn"><i class="fa-solid fa-user"></i></a>
+                    <a href="#" class="icon-btn active"><i class="fa-regular fa-bell"></i></a>
+                    <a href="#" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+                <div class="nav-icons-bottom">
+                    <a href="#" class="icon-btn"><i class="fa-solid fa-bars"></i></a>
+                </div>
+            </aside>
+
+            <!-- Notifications Layout -->
+            <main class="notifications-content">
+                <!-- Left Panel: Categories -->
+                <div class="left-panel">
+                    <div class="panel-header">
+                        <h2>Thông báo</h2>
+                    </div>
+                    <div class="category-list">
+                        <button class="category-item active">
+                            <i class="fa-solid fa-tag"></i>
+                            <span>Khuyến mãi</span>
+                        </button>
+                        <button class="category-item">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                            <span>Cập nhật FastFood</span>
+                        </button>
+                        <button class="category-item">
+                            <i class="fa-solid fa-gift"></i>
+                            <span>Giải thưởng FastFood</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Panel: List -->
+                <div class="right-panel">
+                    <div class="notification-list">
+                        <!-- Item 1 -->
+                        <div class="noti-card unread">
+                            <div class="noti-content">
+                                <h4>🎉 MUA 1 TẶNG 1 - Duyên tới NƠI!...</h4>
+                                <p>👉 Thứ 5 tuần trước</p>
+                            </div>
+                            <span class="status-dot"></span>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="noti-card unread">
+                            <div class="noti-content">
+                                <h4>Bí Kíp Ăn Uống Siêu Tiết Kiệm Hàng...</h4>
+                                <p>👉 Hướng trọn quyền lợi Hội viên</p>
+                            </div>
+                            <span class="status-dot"></span>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="noti-card unread">
+                            <div class="noti-content">
+                                <h4>Tin hiệu vũ trụ đặt đồ ăn vặt cùng f...</h4>
+                                <p>Giờ được nhậu ngay đồ ăn FastFood giảm...</p>
+                            </div>
+                            <span class="status-dot"></span>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="noti-card unread">
+                            <div class="noti-content">
+                                <h4>🎉 Miễn phí dùng thử 02 THÁNG ĐẦU</h4>
+                                <p>👉 Hướng trọn quyền lợi Hội viên</p>
+                            </div>
+                            <span class="status-dot"></span>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="noti-card unread">
+                            <div class="noti-content">
+                                <h4>Freeship 50.000đ cho đơn từ 150.0...</h4>
+                                <p>Đặt app liền!</p>
+                            </div>
+                            <span class="status-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

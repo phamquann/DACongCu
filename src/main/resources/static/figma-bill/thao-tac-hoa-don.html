@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thao tác hóa đơn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="artboard">
+    <header class="app-header">
+      <div class="brand-wrap">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-text">Đặt hàng thành công</span>
+      </div>
+      <nav class="top-nav" aria-label="Điều hướng màn hình">
+        <a href="./dat-hang-thanh-cong.html">Đặt hàng</a>
+        <a href="./goi-y-mon-an.html">Gợi ý món</a>
+        <a href="./hoa-don-dien-tu.html">Hóa đơn</a>
+        <a class="active" href="./thao-tac-hoa-don.html">Thao tác</a>
+        <a href="./danh-gia-don-hang.html">Đánh giá</a>
+      </nav>
+      <label class="search-box" aria-label="Tìm kiếm">
+        <input type="text" placeholder="Search in idea" disabled>
+      </label>
+    </header>
+
+    <main>
+      <section class="screen active">
+        <div class="actions-grid">
+          <div>
+            <h2>Tổng thanh toán</h2>
+            <p id="actions-total" class="grand-total">0 đ</p>
+
+            <h3 class="section-gap">Thao tác hóa đơn</h3>
+            <div class="action-buttons">
+              <button class="action-btn" id="print-invoice-btn">In hóa đơn</button>
+              <button class="action-btn" id="save-pdf-btn">Tải PDF</button>
+            </div>
+          </div>
+
+          <div>
+            <article class="soft-card">
+              <h4>Trạng thái thanh toán</h4>
+              <p>Đã xác nhận</p>
+              <small id="actions-created-date">Ngày tạo: --</small>
+            </article>
+            <article class="soft-card">
+              <h4>Phương thức thanh toán</h4>
+              <p id="actions-payment-method">N/A</p>
+              <small id="actions-order-code">Mã đơn: --</small>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

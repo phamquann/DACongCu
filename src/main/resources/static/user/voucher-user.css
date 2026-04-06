@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #222;
+}
+.voucher-section {
+    background: #fff;
+    margin: 32px auto;
+    max-width: 900px;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px #ff980033;
+    padding: 32px 32px 24px 32px;
+}
+.voucher-section h2 {
+    color: #ff9800;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 2rem;
+}
+.voucher-section p {
+    text-align: center;
+    color: #888;
+    margin-bottom: 18px;
+}
+.toolbar {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+.toolbar button {
+    background: #fff;
+    border: 1px solid #ff9800;
+    color: #ff9800;
+    border-radius: 20px;
+    padding: 7px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.toolbar button.active {
+    background: #ff9800;
+    color: #fff;
+}
+.voucher-list {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.voucher-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px #ff980033;
+    width: 200px;
+    padding: 18px 14px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 18px;
+    position: relative;
+}
+.voucher-card .discount {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: #ff9800;
+    color: #fff;
+    border-radius: 50%;
+    padding: 6px 12px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.voucher-card img, .voucher-card .emoji {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: #fff3e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+}
+.voucher-card .name {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+    text-align: center;
+}
+.voucher-card .desc {
+    color: #444;
+    font-size: 0.98rem;
+    margin-bottom: 8px;
+    text-align: center;
+}
+.voucher-card .info {
+    color: #888;
+    font-size: 0.93rem;
+    margin-bottom: 4px;
+    text-align: center;
+}
+.voucher-card .code {
+    background: #ff9800;
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: none;
+}

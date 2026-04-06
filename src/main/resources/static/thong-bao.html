@@ -3,112 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastFood - Thông báo</title>
-    <!-- Use modern Inter font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>FastFood - Giao hàng & Hồ sơ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/thong-bao.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Top Header -->
-        <header class="top-bar">
-            <div class="logo">
-                <i class="fa-solid fa-utensils"></i> FastFood
+    <div class="page full-width">
+        <div class="column column-left" style="max-width: 100%;">
+            <div class="card order-card">
+                <div class="order-header">
+                    <div>
+                        <p class="eyebrow">Giao hàng - Minh Quân</p>
+                        <p class="order-code">Mã đơn: phamquan</p>
+                    </div>
+                    <div class="pill pill-warn">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>15 - 20 phút</span>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <div class="step completed">
+                        <span class="step-icon"><i class="fa-solid fa-bell"></i></span>
+                        <span class="step-text">Đã đặt hàng<br><small>14:20</small></span>
+                    </div>
+                    <div class="step completed">
+                        <span class="step-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+                        <span class="step-text">Đang chuẩn bị<br><small>14:30</small></span>
+                    </div>
+                    <div class="step active">
+                        <span class="step-icon"><i class="fa-solid fa-bicycle"></i></span>
+                        <span class="step-text">Đang giao hàng<br><small>14:40</small></span>
+                    </div>
+                    <div class="step">
+                        <span class="step-icon"><i class="fa-solid fa-house"></i></span>
+                        <span class="step-text">Đã giao hàng<br><small>14:50</small></span>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card driver">
+                        <div class="avatar">TD</div>
+                        <div class="driver-info">
+                            <p class="label">Tài xế</p>
+                            <p class="name">Trần Đức Minh</p>
+                            <p class="sub">HonDa Wave • 29X • 12345</p>
+                        </div>
+                        <button class="btn ghost"><i class="fa-solid fa-phone"></i> Gọi</button>
+                    </div>
+
+                    <div class="info-card destination">
+                        <div class="dest-row">
+                            <p class="label">Người nhận</p>
+                            <p class="name">Trần Thị Thanh Mai</p>
+                        </div>
+                        <p class="sub">0947869815</p>
+                        <p class="sub">Đường 5, Lô Lô, Man Thiện, Thủ Đức, Hồ Chí Minh</p>
+                        <p class="note">Ghi chú: Gọi điện trước khi giao 5 phút</p>
+                    </div>
+
+                    <div class="info-card totals">
+                        <p class="label">Tổng đơn hàng</p>
+                        <div class="total-row">
+                            <span>Tạm tính</span>
+                            <span>409.000đ</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Chi phí giao</span>
+                            <span>10.000đ</span>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="total-row grand">
+                            <span>Tổng cộng</span>
+                            <span>419.000đ</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card checklist">
+                        <ul>
+                            <li><i class="fa-regular fa-circle-check"></i> Thời gian đặt hàng: Hôm nay</li>
+                            <li><i class="fa-regular fa-clock"></i> Phương thức thanh toán</li>
+                            <li><i class="fa-solid fa-coins"></i> Tiền mặt khi nhận hàng</li>
+                        </ul>
+                        <button class="btn danger">Hủy đơn hàng</button>
+                    </div>
+                </div>
+
+                <div class="info-card items">
+                    <p class="label">Chi tiết đơn hàng</p>
+                    <div class="item-list">
+                        <div class="item-row">
+                            <span>Burger bò nóng</span>
+                            <span>170.000đ</span>
+                        </div>
+                        <div class="item-row">
+                            <span>Gà rán hộp 8 miếng</span>
+                            <span>159.000đ</span>
+                        </div>
+                        <div class="item-row">
+                            <span>Combo bò gà Hằng (9 miếng)</span>
+                            <span>80.000đ</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="user-profile">
-                <i class="fa-solid fa-user"></i>
-            </div>
-        </header>
-
-        <div class="main-layout">
-            <!-- Sidebar -->
-            <aside class="sidebar">
-                <div class="nav-icons-top">
-                    <a href="#" class="icon-btn"><i class="fa-solid fa-house"></i></a>
-                    <a href="#" class="icon-btn"><i class="fa-solid fa-user"></i></a>
-                    <a href="#" class="icon-btn active"><i class="fa-regular fa-bell"></i></a>
-                    <a href="#" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
-                <div class="nav-icons-bottom">
-                    <a href="#" class="icon-btn"><i class="fa-solid fa-bars"></i></a>
-                </div>
-            </aside>
-
-            <!-- Notifications Layout -->
-            <main class="notifications-content">
-                <!-- Left Panel: Categories -->
-                <div class="left-panel">
-                    <div class="panel-header">
-                        <h2>Thông báo</h2>
-                    </div>
-                    <div class="category-list">
-                        <button class="category-item active">
-                            <i class="fa-solid fa-tag"></i>
-                            <span>Khuyến mãi</span>
-                        </button>
-                        <button class="category-item">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span>Cập nhật FastFood</span>
-                        </button>
-                        <button class="category-item">
-                            <i class="fa-solid fa-gift"></i>
-                            <span>Giải thưởng FastFood</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Right Panel: List -->
-                <div class="right-panel">
-                    <div class="notification-list">
-                        <!-- Item 1 -->
-                        <div class="noti-card unread">
-                            <div class="noti-content">
-                                <h4>🎉 MUA 1 TẶNG 1 - Duyên tới NƠI!...</h4>
-                                <p>👉 Thứ 5 tuần trước</p>
-                            </div>
-                            <span class="status-dot"></span>
-                        </div>
-                        
-                        <!-- Item 2 -->
-                        <div class="noti-card unread">
-                            <div class="noti-content">
-                                <h4>Bí Kíp Ăn Uống Siêu Tiết Kiệm Hàng...</h4>
-                                <p>👉 Hướng trọn quyền lợi Hội viên</p>
-                            </div>
-                            <span class="status-dot"></span>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div class="noti-card unread">
-                            <div class="noti-content">
-                                <h4>Tin hiệu vũ trụ đặt đồ ăn vặt cùng f...</h4>
-                                <p>Giờ được nhậu ngay đồ ăn FastFood giảm...</p>
-                            </div>
-                            <span class="status-dot"></span>
-                        </div>
-
-                        <!-- Item 4 -->
-                        <div class="noti-card unread">
-                            <div class="noti-content">
-                                <h4>🎉 Miễn phí dùng thử 02 THÁNG ĐẦU</h4>
-                                <p>👉 Hướng trọn quyền lợi Hội viên</p>
-                            </div>
-                            <span class="status-dot"></span>
-                        </div>
-
-                        <!-- Item 5 -->
-                        <div class="noti-card unread">
-                            <div class="noti-content">
-                                <h4>Freeship 50.000đ cho đơn từ 150.0...</h4>
-                                <p>Đặt app liền!</p>
-                            </div>
-                            <span class="status-dot"></span>
-                        </div>
-                    </div>
-                </div>
-            </main>
         </div>
     </div>
 </body>

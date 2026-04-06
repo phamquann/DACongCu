@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đặt hàng thành công</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="artboard">
+    <header class="app-header">
+      <div class="brand-wrap">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-text">Đặt hàng thành công</span>
+      </div>
+      <nav class="top-nav" aria-label="Điều hướng màn hình">
+        <a class="active" href="./dat-hang-thanh-cong.html">Đặt hàng</a>
+        <a href="./goi-y-mon-an.html">Gợi ý món</a>
+        <a href="./hoa-don-dien-tu.html">Hóa đơn</a>
+        <a href="./thao-tac-hoa-don.html">Thao tác</a>
+        <a href="./danh-gia-don-hang.html">Đánh giá</a>
+      </nav>
+      <label class="search-box" aria-label="Tìm kiếm">
+        <input type="text" placeholder="Search in idea" disabled>
+      </label>
+    </header>
+
+    <main>
+      <section class="screen active">
+        <div class="hero-block center-text">
+          <h1>Yay! Đặt hàng thành công</h1>
+          <p>Đơn ăn ngon của bạn sẽ đến trong 30 phút nữa nhé!</p>
+          <button class="pill-btn">Về trang chủ</button>
+        </div>
+
+        <div class="two-col">
+          <div class="left-col">
+            <h2>Thông tin giao hàng</h2>
+            <p>Thời gian giao dự kiến: <strong id="success-eta">30 phút</strong></p>
+            <p>Mã đơn: <strong id="success-order-id">ORD-0000</strong></p>
+          </div>
+          <div class="notice-card">
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=240&q=80" alt="Món nổi bật">
+            <div>
+              <h3>Chiếc bánh ngon miệng!</h3>
+              <p id="success-highlight">Chúng tôi sẽ tạo trải nghiệm đặt đơn hàng nhẹ như bơ.</p>
+              <small id="success-address">Địa chỉ giao sẽ hiển thị ở đây.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

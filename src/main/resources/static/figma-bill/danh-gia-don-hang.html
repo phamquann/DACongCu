@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đánh giá đơn hàng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="artboard">
+    <header class="app-header">
+      <div class="brand-wrap">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-text">Đặt hàng thành công</span>
+      </div>
+      <nav class="top-nav" aria-label="Điều hướng màn hình">
+        <a href="./dat-hang-thanh-cong.html">Đặt hàng</a>
+        <a href="./goi-y-mon-an.html">Gợi ý món</a>
+        <a href="./hoa-don-dien-tu.html">Hóa đơn</a>
+        <a href="./thao-tac-hoa-don.html">Thao tác</a>
+        <a class="active" href="./danh-gia-don-hang.html">Đánh giá</a>
+      </nav>
+      <label class="search-box" aria-label="Tìm kiếm">
+        <input type="text" placeholder="Search in idea" disabled>
+      </label>
+    </header>
+
+    <main>
+      <section class="screen active">
+        <div class="review-grid">
+          <div>
+            <h2 id="review-order-title">Bữa ăn từ [KFC] của bạn thế nào?</h2>
+            <p>Hãy chia sẻ cảm nhận của bạn!</p>
+
+            <h3 class="section-gap">Đánh giá trải nghiệm của bạn!</h3>
+            <p>Ý kiến của bạn rất quan trọng với chúng tôi!</p>
+          </div>
+
+          <div>
+            <div class="food-preview">
+              <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=820&q=80" alt="Thực đơn món ăn nhanh">
+            </div>
+
+            <div class="rating-strip" id="rating-strip" aria-label="Đánh giá sao">
+              <button type="button" class="star" data-value="1">★</button>
+              <button type="button" class="star" data-value="2">★</button>
+              <button type="button" class="star" data-value="3">★</button>
+              <button type="button" class="star" data-value="4">★</button>
+              <button type="button" class="star" data-value="5">★</button>
+            </div>
+
+            <label class="field-label" for="review-criteria">Điều gì khiến bạn hài lòng?</label>
+            <input id="review-criteria" type="text" placeholder="Select your tags...">
+
+            <label class="field-label" for="review-comment">Chia sẻ thêm (không bắt buộc)...</label>
+            <textarea id="review-comment" rows="3" placeholder="Write your comments here..."></textarea>
+
+            <p id="review-feedback" class="feedback-text">You thought this tasted?</p>
+            <button id="review-submit" class="submit-btn">GỬI ĐÁNH GIÁ</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

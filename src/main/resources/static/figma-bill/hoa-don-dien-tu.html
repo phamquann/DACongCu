@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hóa đơn điện tử</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="artboard">
+    <header class="app-header">
+      <div class="brand-wrap">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-text">Đặt hàng thành công</span>
+      </div>
+      <nav class="top-nav" aria-label="Điều hướng màn hình">
+        <a href="./dat-hang-thanh-cong.html">Đặt hàng</a>
+        <a href="./goi-y-mon-an.html">Gợi ý món</a>
+        <a class="active" href="./hoa-don-dien-tu.html">Hóa đơn</a>
+        <a href="./thao-tac-hoa-don.html">Thao tác</a>
+        <a href="./danh-gia-don-hang.html">Đánh giá</a>
+      </nav>
+      <label class="search-box" aria-label="Tìm kiếm">
+        <input type="text" placeholder="Search in idea" disabled>
+      </label>
+    </header>
+
+    <main>
+      <section class="screen active">
+        <div class="invoice-grid">
+          <div>
+            <h2>Hóa đơn điện tử</h2>
+            <h3 class="section-gap">Các món đã đặt</h3>
+            <ul id="invoice-item-list" class="item-list"></ul>
+          </div>
+
+          <aside class="invoice-side">
+            <article class="soft-card">
+              <h4>Hóa đơn</h4>
+              <p id="invoice-id">Mã hóa đơn: TBD</p>
+              <small id="invoice-time">Ngày tạo: --</small>
+            </article>
+            <article class="soft-card">
+              <h4>Thông tin khách hàng</h4>
+              <p id="invoice-customer-name">Tên: Trần An</p>
+              <small id="invoice-customer-address">SĐT: -- | Địa chỉ: --</small>
+            </article>
+            <article class="soft-card emphasize">
+              <h4>Tóm tắt đơn hàng</h4>
+              <p id="invoice-order-total">0 đ</p>
+              <small>Đã bao gồm phí giao và giảm giá.</small>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

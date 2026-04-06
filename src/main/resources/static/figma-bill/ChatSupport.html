@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Hỗ Trợ - Food Delivery</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --orange: #f97316;
+        --orange-dark: #ea580c;
+        --gray-light: #f3f4f6;
+        --gray-medium: #e5e7eb;
+        --gray-dark: #6b7280;
+        --blue-dark: #1f2937;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+        background-color: #000;
+      }
+
+      .chat-container {
+        display: flex;
+        height: 100vh;
+        background-color: #000;
+      }
+
+      /* ========== CHAT LIST SIDEBAR ========== */
+      .chat-sidebar {
+        width: 320px;
+        background-color: white;
+        border-right: 1px solid var(--gray-medium);
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-sidebar-header {
+        padding: 24px;
+        border-bottom: 1px solid var(--gray-medium);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .chat-sidebar-header h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .add-chat-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 20px;
+        color: var(--orange);
+        transition: background-color 0.3s;
+      }
+
+      .add-chat-btn:hover {
+        background-color: var(--gray-light);
+      }
+
+      /* Chat List */
+      .chat-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px 0;
+      }
+
+      .chat-item {
+        padding: 12px 16px;
+        border-bottom: 1px solid #f3f4f6;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-left: 4px solid transparent;
+      }
+
+      .chat-item:hover {
+        background-color: var(--gray-light);
+      }
+
+      .chat-item.active {
+        background-color: #fef3f2;
+        border-left-color: var(--orange);
+      }
+
+      .chat-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #fb923c, #f97316);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
+      }
+
+      .chat-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .chat-name {
+        font-weight: 700;
+        color: #111827;
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+
+      .chat-status {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+      }
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background-color: #10b981;
+        border-radius: 50%;
+      }
+
+      .chat-last-msg {
+        color: var(--gray-dark);
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2px;
+      }
+
+      /* ========== CHAT CONTENT ========== */
+      .chat-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+      }
+
+      /* Chat Header */
+      .chat-header {
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--gray-medium);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .chat-header-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #fb923c, #f97316);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 20px;
+        box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
+      }
+
+      .chat-header-info h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .chat-header-status {
+        font-size: 12px;
+        color: #10b981;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+
+      .chat-options-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 20px;
+        color: var(--orange);
+        transition: background-color 0.3s;
+      }
+
+      .chat-options-btn:hover {
+        background-color: var(--gray-light);
+      }
+
+      /* Messages Area */
+      .messages-area {
+        flex: 1;
+        overflow-y: auto;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .message-group {
+        display: flex;
+        margin-bottom: 12px;
+      }
+
+      .message-group.user {
+        justify-content: flex-end;
+      }
+
+      .message-group.shipper {
+        justify-content: flex-start;
+      }
+
+      .message-bubble {
+        max-width: 60%;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        word-wrap: break-word;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .message-group.user .message-bubble {
+        background-color: #1f2937;
+        color: white;
+        border-bottom-right-radius: 2px;
+      }
+
+      .message-group.shipper .message-bubble {
+        background-color: #e5e7eb;
+        color: #111827;
+        border-bottom-left-radius: 2px;
+      }
+
+      .message-time {
+        font-size: 11px;
+        margin-top: 4px;
+        opacity: 0.7;
+      }
+
+      /* Input Area */
+      .input-area {
+        background-color: var(--orange);
+        padding: 16px 24px;
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .input-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 20px;
+        color: white;
+        transition: opacity 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .input-btn:hover {
+        opacity: 0.8;
+      }
+
+      .message-input-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        padding: 0 16px;
+      }
+
+      .message-input-wrapper input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 12px 0;
+        font-size: 14px;
+        background-color: transparent;
+      }
+
+      .message-input-wrapper input::placeholder {
+        color: var(--gray-dark);
+      }
+
+      .send-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: white;
+        color: var(--orange);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        transition: background-color 0.3s;
+        flex-shrink: 0;
+      }
+
+      .send-btn:hover {
+        background-color: var(--gray-light);
+      }
+
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 768px) {
+        .chat-container {
+          flex-direction: column;
+        }
+
+        .chat-sidebar {
+          width: 100%;
+          height: 200px;
+          max-height: 30vh;
+          border-right: none;
+          border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .chat-list {
+          display: flex;
+          overflow-x: auto;
+        }
+
+        .chat-item {
+          flex-direction: column;
+          align-items: center;
+          padding: 8px 12px;
+          border-left: none;
+          border-bottom: none;
+          border-right: 1px solid var(--gray-medium);
+          min-width: 80px;
+          text-align: center;
+        }
+
+        .chat-item.active {
+          border-left: none;
+          border-bottom: 4px solid var(--orange);
+          background-color: white;
+        }
+
+        .chat-info {
+          display: none;
+        }
+
+        .chat-avatar {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+        }
+
+        .chat-content {
+          flex: 1;
+        }
+
+        .chat-header {
+          padding: 12px 16px;
+        }
+
+        .chat-header-avatar {
+          width: 44px;
+          height: 44px;
+          font-size: 16px;
+        }
+
+        .messages-area {
+          padding: 12px;
+          gap: 8px;
+        }
+
+        .message-bubble {
+          max-width: 85%;
+        }
+
+        .input-area {
+          padding: 12px;
+          gap: 8px;
+        }
+
+        .input-btn {
+          width: 36px;
+          height: 36px;
+          font-size: 18px;
+        }
+
+        .send-btn {
+          width: 36px;
+          height: 36px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .chat-sidebar-header h2 {
+          font-size: 18px;
+        }
+
+        .chat-header-info h3 {
+          font-size: 16px;
+        }
+
+        .messages-area {
+          padding: 8px;
+        }
+
+        .message-bubble {
+          max-width: 95%;
+          font-size: 13px;
+          padding: 10px 12px;
+        }
+
+        .message-time {
+          font-size: 10px;
+        }
+      }
+
+      /* ========== SCROLL BAR ========== */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <!-- CHAT SIDEBAR -->
+      <aside class="chat-sidebar">
+        <div class="chat-sidebar-header">
+          <h2>Chat</h2>
+          <button class="add-chat-btn">➕</button>
+        </div>
+
+        <div class="chat-list">
+          <!-- Chat Item 1 - Shipper -->
+          <div class="chat-item active">
+            <div class="chat-avatar">S</div>
+            <div class="chat-info">
+              <div class="chat-name">Shipper</div>
+              <div class="chat-status">
+                <span class="status-dot"></span>
+                <span>Online</span>
+              </div>
+              <div class="chat-last-msg">Đã giao đơn hàng</div>
+            </div>
+          </div>
+
+          <!-- Chat Item 2 - Support -->
+          <div class="chat-item">
+            <div
+              class="chat-avatar"
+              style="background: linear-gradient(135deg, #60a5fa, #3b82f6)"
+            >
+              H
+            </div>
+            <div class="chat-info">
+              <div class="chat-name">Hỗ trợ khách hàng</div>
+              <div class="chat-status">
+                <span class="status-dot"></span>
+                <span>Online</span>
+              </div>
+              <div class="chat-last-msg">Chúng tôi sẵn sàng hỗ trợ</div>
+            </div>
+          </div>
+
+          <!-- Chat Item 3 - Restaurant -->
+          <div class="chat-item">
+            <div
+              class="chat-avatar"
+              style="background: linear-gradient(135deg, #34d399, #10b981)"
+            >
+              N
+            </div>
+            <div class="chat-info">
+              <div class="chat-name">Nhà hàng A</div>
+              <div class="chat-status">
+                <span class="status-dot"></span>
+                <span>Online</span>
+              </div>
+              <div class="chat-last-msg">Đơn hàng đang chuẩn bị</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CHAT CONTENT -->
+      <main class="chat-content">
+        <!-- CHAT HEADER -->
+        <header class="chat-header">
+          <div class="chat-header-left">
+            <div class="chat-header-avatar">S</div>
+            <div class="chat-header-info">
+              <h3>Order</h3>
+              <div class="chat-header-status">Đang hoạt động</div>
+            </div>
+          </div>
+          <button class="chat-options-btn">➕</button>
+        </header>
+
+        <!-- MESSAGES AREA -->
+        <div class="messages-area">
+          <div class="message-group shipper">
+            <div>
+              <div class="message-bubble">Đơn hàng của bạn sắp đến</div>
+              <div class="message-time">14:30</div>
+            </div>
+          </div>
+
+          <div class="message-group user">
+            <div>
+              <div class="message-bubble">Ok, cảm ơn bạn</div>
+              <div class="message-time">14:31</div>
+            </div>
+          </div>
+
+          <div class="message-group shipper">
+            <div>
+              <div class="message-bubble">Shipper sẽ gọi bạn trước 5 phút</div>
+              <div class="message-time">14:32</div>
+            </div>
+          </div>
+
+          <div class="message-group user">
+            <div>
+              <div class="message-bubble">Vâng, tôi sẽ đợi</div>
+              <div class="message-time">14:32</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INPUT AREA -->
+        <div class="input-area">
+          <button class="input-btn" title="Đính kèm">📎</button>
+          <button class="input-btn" title="Chụp ảnh">📷</button>
+          <div class="message-input-wrapper">
+            <input
+              type="text"
+              placeholder="Nhập tin nhắn..."
+              id="messageInput"
+            />
+          </div>
+          <button class="send-btn" title="Gửi" onclick="sendMessage()">
+            ➤
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const messageInput = document.getElementById("messageInput");
+      const messagesArea = document.querySelector(".messages-area");
+
+      function sendMessage() {
+        const text = messageInput.value.trim();
+        if (!text) return;
+
+        // Create user message
+        const userMessageGroup = document.createElement("div");
+        userMessageGroup.className = "message-group user";
+        const now = new Date();
+        const timeString = now.toLocaleTimeString("vi-VN", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        userMessageGroup.innerHTML = `
+                <div>
+                    <div class="message-bubble">${text}</div>
+                    <div class="message-time">${timeString}</div>
+                </div>
+            `;
+
+        messagesArea.appendChild(userMessageGroup);
+        messageInput.value = "";
+
+        // Scroll to bottom
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+
+        // Simulate shipper response
+        setTimeout(() => {
+          const shipperMessageGroup = document.createElement("div");
+          shipperMessageGroup.className = "message-group shipper";
+          const responseTime = new Date();
+          const responseTimeString = responseTime.toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          shipperMessageGroup.innerHTML = `
+                    <div>
+                        <div class="message-bubble">Cảm ơn bạn đã chờ đợi!</div>
+                        <div class="message-time">${responseTimeString}</div>
+                    </div>
+                `;
+
+          messagesArea.appendChild(shipperMessageGroup);
+          messagesArea.scrollTop = messagesArea.scrollHeight;
+        }, 1000);
+      }
+
+      messageInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      });
+    </script>
+  </body>
+</html>

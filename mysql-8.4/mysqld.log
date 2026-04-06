@@ -1,0 +1,24 @@
+2026-04-03T18:24:37.031776Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-04-03T18:24:37.172659Z 0 [Warning] [MY-010097] [Server] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2026-04-03T18:24:37.172712Z 0 [System] [MY-010116] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld (mysqld 8.4.3) starting as process 18472
+2026-04-03T18:24:37.257532Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-04-03T18:24:37.682523Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-04-03T18:24:38.219051Z 0 [Warning] [MY-013829] [Server] Missing data directory for ICU regular expressions: C:\laragon\bin\mysql\mysql-8.4.3-winx64\lib\private\.
+2026-04-03T18:24:38.233489Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-04-03T18:24:38.233828Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-04-03T18:24:38.303247Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2026-04-03T18:24:38.303484Z 0 [System] [MY-010931] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: ready for connections. Version: '8.4.3'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2026-04-04T07:30:20.178427Z 95 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.4.3).
+2026-04-04T07:30:20.184450Z 0 [System] [MY-013105] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Normal shutdown.
+2026-04-04T07:30:22.207927Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 88  user: 'root'.
+2026-04-04T07:30:22.211974Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 89  user: 'root'.
+2026-04-04T07:30:22.213857Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 90  user: 'root'.
+2026-04-04T07:30:22.214872Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 91  user: 'root'.
+2026-04-04T07:30:22.215463Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 92  user: 'root'.
+2026-04-04T07:30:22.216117Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 85  user: 'root'.
+2026-04-04T07:30:22.216986Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 93  user: 'root'.
+2026-04-04T07:30:22.218680Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 86  user: 'root'.
+2026-04-04T07:30:22.220241Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 94  user: 'root'.
+2026-04-04T07:30:22.221419Z 0 [Warning] [MY-010909] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Forcing close of thread 87  user: 'root'.
+2026-04-04T07:30:22.708298Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.4.3-winx64\bin\mysqld: Shutdown complete (mysqld 8.4.3)  MySQL Community Server - GPL.
+2026-04-04T07:30:22.708725Z 0 [System] [MY-015016] [Server] MySQL Server - end.

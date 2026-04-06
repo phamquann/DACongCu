@@ -38,6 +38,7 @@ function renderTracking(order, profile) {
   setText("tracking-total", FoodApp.formatCurrency(order.total));
   setText("tracking-status-pill", FoodApp.statusLabel(order.status));
   renderTimeline(order);
+  renderActivity(order.timeline);
   renderTrackingItems(order.items);
   bindTrackingActions(order);
 }
@@ -93,6 +94,37 @@ function renderTrackingItems(items) {
       <div class="item-row">
         <span>${FoodApp.escapeHtml(item.name)} x${item.quantity}</span>
         <span>${FoodApp.formatCurrency(item.lineTotal)}</span>
+      </div>
+    `
+    )
+    .join("");
+}
+
+function renderActivity(timeline) {
+  const host = document.getElementById("tracking-activity");
+  if (!host) {
+    return;
+  }
+
+  const safeTimeline = Array.isArray(timeline) ? timeline : [];
+  if (safeTimeline.length === 0) {
+    host.innerHTML = '<p style="color:#666">Chưa có hoạt động mới.</p>';
+    return;
+  }
+
+  const recent = [...safeTimeline]
+    .sort((left, right) => new Date(right.changedAt).getTime() - new Date(left.changedAt).getTime())
+    .slice(0, 6);
+
+  host.innerHTML = recent
+    .map(
+      (step) => `
+      <div class="activity-item">
+        <span class="activity-dot"></span>
+        <div>
+          <div class="activity-title">${FoodApp.escapeHtml(FoodApp.statusLabel(step.status))}</div>
+          <small class="activity-time">${FoodApp.escapeHtml(FoodApp.formatDateTime(step.changedAt))}</small>
+        </div>
       </div>
     `
     )

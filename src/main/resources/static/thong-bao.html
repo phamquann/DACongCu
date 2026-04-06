@@ -22,6 +22,11 @@
         .step .step-icon { display: block; font-size: 20px; margin-bottom: 6px; }
         .step.active { background: #fff3e6; color: #f97316; font-weight: 700; }
         .step.completed { background: #e8f8ef; color: #15803d; }
+        .activity-list { display: grid; gap: 10px; }
+        .activity-item { display: flex; gap: 10px; align-items: flex-start; background: #fafafa; border-radius: 10px; padding: 10px 12px; }
+        .activity-dot { width: 10px; height: 10px; border-radius: 50%; background: #f97316; margin-top: 6px; }
+        .activity-title { font-size: 13px; font-weight: 700; color: #333; }
+        .activity-time { display: block; margin-top: 3px; font-size: 12px; color: #666; }
         .items { display: grid; gap: 10px; }
         .item-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; background: #fafafa; border-radius: 10px; }
         .actions { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -51,6 +56,11 @@
             <div class="section">
                 <h2 style="font-size:18px;margin-bottom:12px;">Tiến trình giao hàng</h2>
                 <div id="tracking-progress" class="progress"></div>
+            </div>
+
+            <div class="section">
+                <h2 style="font-size:18px;margin-bottom:12px;">Hoạt động gần đây</h2>
+                <div id="tracking-activity" class="activity-list"></div>
             </div>
 
             <div class="section recipient-grid">
@@ -105,6 +115,7 @@
     </div>
 
     <script src="/js/common.js"></script>
+    <script src="/js/user-shortcuts.js"></script>
     <script src="/js/tracking.js"></script>
 </body>
 </html>

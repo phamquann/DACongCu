@@ -1,0 +1,22 @@
+services:
+  backend:
+    image: ${REGISTRY:-docker.io}/${NAMESPACE:-yourname}/dacongcu-backend:${TAG:-latest}
+    container_name: dacongcu-backend
+    ports:
+      - "8081:8080"
+    networks:
+      - app-network
+
+  frontend:
+    image: ${REGISTRY:-docker.io}/${NAMESPACE:-yourname}/dacongcu-frontend:${TAG:-latest}
+    container_name: dacongcu-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

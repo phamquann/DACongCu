@@ -1,0 +1,16 @@
+.git
+.gitignore
+.vscode
+
+target
+**/target
+
+node_modules
+frontend/node_modules
+
+mysql-8.4
+data
+
+*.log
+*.tmp
+*.swp

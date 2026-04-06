@@ -119,9 +119,16 @@ function setActiveScreen(screenKey) {
 }
 
 function bindStaticActions() {
+  const goHomeBtn = document.getElementById("go-home-btn");
   const printBtn = document.getElementById("print-invoice-btn");
   const savePdfBtn = document.getElementById("save-pdf-btn");
   const reviewBtn = document.getElementById("review-submit");
+
+  if (goHomeBtn) {
+    goHomeBtn.addEventListener("click", () => {
+      window.location.href = "/home";
+    });
+  }
 
   if (printBtn) {
     printBtn.addEventListener("click", () => window.print());

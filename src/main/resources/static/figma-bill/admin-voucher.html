@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý Voucher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Reset cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9; /* Màu nền xám nhạt cho toàn trang */
+            color: #333;
+        }
+
+        /* --- BỐ CỤC CHÍNH (LAYOUT) --- */
+        .admin-layout {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR (THANH BÊN TRÁI) --- */
+        .sidebar {
+            width: 250px;
+            background-color: #faebd7; /* Màu nền cam nhạt */
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e5d3be;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .sidebar-logo i {
+            font-size: 40px;
+            color: #f97316;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .sidebar-logo span {
+            color: #f97316;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            flex: 1; /* Chiếm phần không gian còn lại để đẩy menu dưới cùng xuống đáy */
+        }
+
+        .menu-item {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #444;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #f5dcb9;
+        }
+
+        .menu-item.active {
+            background-color: #fcd5a8;
+            color: #d9534f;
+            border-left: 4px solid #f97316;
+        }
+
+        .menu-item i {
+            width: 20px;
+            font-size: 18px;
+        }
+
+        /* Đẩy nhóm menu cuối (Người dùng, Đăng xuất) xuống dưới cùng */
+        .sidebar-bottom {
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+
+        /* --- PHẦN NỘI DUNG CHÍNH (MAIN CONTENT) --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+
+        /* Header (Thanh trên cùng) */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .header h2 {
+            color: #f97316;
+            font-size: 22px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 8px 15px 8px 35px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            width: 250px;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info .fa-bell {
+            font-size: 20px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .user-profile {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .user-profile strong {
+            display: block;
+        }
+
+        /* Vùng chứa nội dung trang */
+        .content-body {
+            padding: 20px 30px;
+            overflow-y: auto;
+        }
+
+        /* Nút Tạo voucher mới */
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .btn-create {
+            background-color: #f97316;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.3);
+            transition: background 0.3s;
+        }
+
+        .btn-create:hover {
+            background-color: #d35400;
+        }
+
+        /* Bộ lọc (Filters) */
+        .filter-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .filter-btn.active {
+            background-color: #f97316;
+            color: white;
+            border-color: #f97316;
+        }
+
+        /* Bảng dữ liệu (Table) */
+        .table-container {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #fcfcfc;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Dòng dữ liệu đang hoạt động (màu cam nhạt như trong thiết kế) */
+        tr.active-row {
+            background-color: #fdf3e8;
+        }
+
+        .voucher-name-col {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .voucher-name-col img {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+        }
+
+        .status-active {
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        /* Cột thao tác (Action icons) */
+        .action-icons i {
+            font-size: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+        }
+
+        .action-icons i:hover {
+            color: #f97316;
+        }
+        
+        .action-icons .fa-circle-xmark {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <i class="fa-solid fa-tags"></i>
+            <div><span>VOUCHER</span> ADMIN</div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a href="#" class="menu-item"><i class="fa-solid fa-house"></i> Thống kê</a></li>
+            <li><a href="#" class="menu-item active"><i class="fa-solid fa-ticket"></i> Quản lý Voucher</a></li>
+            
+            <div class="sidebar-bottom">
+                <li><a href="#" class="menu-item"><i class="fa-regular fa-user"></i> Người dùng</a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+            </div>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        
+        <header class="header">
+            <h2>Trang Quản Lý Voucher Đồ Ăn Nhanh</h2>
+            <div class="header-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Tìm kiếm mã, tên, loại voucher...">
+                </div>
+                <div class="user-info">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="user-profile">
+                        <span>Chào Admin</span>
+                        <strong>Thanh Mai</strong>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-body">
+            
+            <div class="top-actions">
+                <button class="btn-create">Tạo voucher mới</button>
+            </div>
+
+            <div class="filter-container">
+                <button class="filter-btn active"><i class="fa-solid fa-border-all"></i> Tất cả</button>
+                <button class="filter-btn"><i class="fa-solid fa-burger"></i> Burger</button>
+                <button class="filter-btn"><i class="fa-solid fa-pizza-slice"></i> Pizza</button>
+                <button class="filter-btn"><i class="fa-solid fa-drumstick-bite"></i> Gà rán</button>
+                <button class="filter-btn"><i class="fa-solid fa-box"></i> Combo</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Mã voucher</th>
+                            <th>Tên & Hình ảnh</th>
+                            <th>Loại</th>
+                            <th>Ưu đãi & điều kiện</th>
+                            <th>Hạn sử dụng</th>
+                            <th>Trạng thái</th>
+                            <th>Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active-row">
+                            <td><input type="checkbox"></td>
+                            <td><strong>BUGER20</strong></td>
+                            <td>
+                                <div class="voucher-name-col">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Burger">
+                                    <span>Giảm 20%<br>Burger</span>
+                                </div>
+                            </td>
+                            <td>Burger</td>
+                            <td>Giảm 20%<br>(Đơn tối thiểu: 50.000)</td>
+                            <td>20/04/2026</td>
+                            <td class="status-active">Đang hoạt động</td>
+                            <td class="action-icons">
+                                <i class="fa-regular fa-pen-to-square" title="Sửa"></i>
+                                <i class="fa-regular fa-circle-xmark" title="Xóa"></i>
+                                <i class="fa-regular fa-copy" title="Sao chép"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>

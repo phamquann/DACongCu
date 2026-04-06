@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Tài Khoản - FoodHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff7b00 100%);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #ff8c00;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .heading {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .subheading {
+            font-size: 14px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff8c00;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-text {
+            font-size: 13px;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .form-subtitle {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff8c00;
+            box-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
+        }
+
+        .password-group {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            cursor: pointer;
+            color: #999;
+            font-size: 18px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #ff8c00;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff7b00;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #ff8c00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-section {
+                padding: 30px 20px;
+            }
+
+            .right-section {
+                padding: 30px 20px;
+            }
+
+            .heading {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div>
+                <div class="logo">
+                    <div class="logo-icon">X</div>
+                    <div class="logo-text">FOODHUB</div>
+                </div>
+                <div class="heading">Đặt Món Ngon<br>Giao Tận Nơi</div>
+                <div class="subheading">Hàng ngàn món ăn ngon, giao nhanh chóng đến tay bạn</div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>
+                        <div class="feature-title">Giao hàng nhanh chóng</div>
+                        <div class="feature-text">Giao hàng trong 30 phút</div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>
+                        <div class="feature-title">Đồ ăn tươi tả</div>
+                        <div class="feature-text">Hàng chục nhà hàng chất lượng</div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>
+                        <div class="feature-title">Ưu đãi hàng đầu</div>
+                        <div class="feature-text">Rất nhiều mã khuyến mãi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <h2 class="form-title">Đăng ký tài khoản</h2>
+            <p class="form-subtitle">Tạo tài khoản để bắt đầu đặt món yêu thích</p>
+
+            <form>
+                <div class="form-group">
+                    <label class="form-label">👤 Họ và tên</label>
+                    <input type="text" class="form-input" placeholder="Nhập họ và tên">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">✉️ Email</label>
+                    <input type="email" class="form-input" placeholder="example@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">📱 Số điện thoại</label>
+                    <input type="tel" class="form-input" placeholder="0123456789">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">📍 Địa chỉ</label>
+                    <input type="text" class="form-input" placeholder="Số nhà, đường, Phường, Quận, Thành phố">
+                </div>
+
+                <div class="form-group password-group">
+                    <label class="form-label">🔒 Mật khẩu</label>
+                    <input type="password" class="form-input" placeholder="••••••••" id="password">
+                    <span class="toggle-password" onclick="togglePassword('password')">👁</span>
+                </div>
+
+                <div class="form-group password-group">
+                    <label class="form-label">🔒 Xác nhận mật khẩu</label>
+                    <input type="password" class="form-input" placeholder="••••••••" id="confirmPassword">
+                    <span class="toggle-password" onclick="togglePassword('confirmPassword')">👁</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">ĐĂNG KÝ</button>
+            </form>
+
+            <div class="login-link">
+                Đã có tài khoản? <a href="#">Đăng nhập ngay</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (field.type === 'password') {
+                field.type = 'text';
+            } else {
+                field.type = 'password';
+            }
+        }
+    </script>
+</body>
+</html>
